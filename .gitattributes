@@ -1,0 +1,3 @@
+# This project publishes measured byte counts and compares generated files against
+# recorded ones, so line endings must not depend on who checked the repository out.
+* text=auto eol=lf

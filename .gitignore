@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+
+# Live handoff state is machine-local; the config is not.
+.handoff/HANDOFF.md
+.handoff/processed_*
+.handoff/discarded_*
+
+# Audit output belongs to the repository being audited, never to this one.
+runs/
