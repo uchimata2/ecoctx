@@ -75,10 +75,16 @@ where it was invented. Running it against a repository that is neither that one 
 acceptance criterion rather than a nice-to-have: until that has happened, the first stranger to run
 it would also be its first real test.
 
+Work on this repository is tracked as GitHub Issues, using taskmd's issues backend. One task per
+issue, and the issue number is the task id. Two consequences worth knowing before you open one:
+`status:` is a label, and the open or closed state of an issue is written from that label, so closing
+an issue in the web interface changes the rendering without changing the fact. Ids come from GitHub,
+so nothing here writes a task id before its issue exists.
+
 Improvements arrive two ways, and they are not the same channel. Defects and requests belong in
-GitHub Issues once this is public. The method itself improves from runs, because each one produces a
-graded table like the one above, and that is the evidence a change to the rubric needs. An issue
-saying a step feels thin is worth much less than a search record showing what the step missed.
+Issues. The method itself improves from runs, because each one produces a graded table like the one
+above, and that is the evidence a change to the rubric needs. An issue saying a step feels thin is
+worth much less than a search record showing what the step missed.
 
 ## Licence
 
