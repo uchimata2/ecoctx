@@ -223,6 +223,26 @@ the two against each other. **The check fails in both directions** — a finding
 the row still reads open, and a task naming a finding that does not exist, both stop the run. See
 `tools/findings.py`.
 
+**The subject needs `.ecoctx.json` before the tool will run, and writing it is part of this step.**
+Its defaults describe this method's own conventions rather than the subject's, so a run that skips the
+file gets `report not found at AUDIT.md` and stops — which is how the tool went unused in the first
+external run. Write it at the **subject's** root, naming at least the report this run is about to
+produce and the pattern of the ids it allocates:
+
+```json
+{ "report": "docs/audits/2026-01-01-context-economy.md", "id_pattern": "E-[0-9]+" }
+```
+
+Every key has a default and only the differing ones need writing. `tasks_glob`, `task_finding_field`,
+`task_status_field` and `closed_statuses` say where the subject keeps its work items and how one reads
+as closed; `closed_marker` is how the report strikes a closed row, and setting it to `""` turns off
+half the check and prints that it has.
+
+**Where a subject's tasks are not files** — an issue tracker, a board — `tasks_glob` matches nothing,
+every finding lists as having no task, and the check then passes having compared nothing. Read the
+counted summary line rather than the exit status, and record the limitation instead of working around
+it.
+
 **The listing must not become a second board.** Key on findings and reference tasks; never mirror
 them.
 

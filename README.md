@@ -58,12 +58,12 @@ so here is the bill. Measured 2026-08-15, in bytes off the filesystem.
 | Routing description | 497 | every session, whether or not you use it |
 | `SKILL.md` body | 5,074 | when the skill activates |
 | `references/measure.md` | 11,837 | steps 1 to 5 only |
-| `references/judge.md` | 16,589 | steps 6 to 11 only |
+| `references/judge.md` | 17,796 | steps 6 to 11 only |
 | `references/standing.md` | 9,347 | steps 12 to 16 only |
 
 497 bytes is the only figure that compounds. Everything below it is paid once, by a session that
 asked for it, and never two references at a time, because the body routes to exactly one. The largest
-possible single-phase cost is 5,074 plus 16,589, or 21,663 bytes, and the common case is smaller.
+possible single-phase cost is 5,074 plus 17,796, or 22,870 bytes, and the common case is smaller.
 
 The description started at 610 and lost 18.5% to duplication with every trigger kept. That trim is
 the method applied to itself, and it is the first measurement this project made.
