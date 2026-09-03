@@ -133,6 +133,44 @@ first thing it reports is itself: one such statement cost **2,690 bytes** of the
 declaring, and pushed the file 4,555 bytes over its own bound — more than half of that the statement's
 own text.
 
+### The worked example: what may be written into a context-bearing file
+
+This step states four constraints on writing a policy and, until now, gave no example of one that
+satisfies them. Here is one, and it is worth adopting on its own account:
+
+> **Config and instruction files carry what is true now** — keys, rules, and short notes on what
+> something means or how to change it. Never a changelog, never how the current wording was reached.
+>
+> **Tasks, handoffs, commit messages and lessons may carry history**, in this shape: the fact, its
+> source reference, the date, and one clause of why it is there. Not a justification, and never a
+> detail copied out of the source it cites.
+>
+> Prose accreted the other way is unsupervisable, and it is paid for on every read.
+
+**The distinction that makes it usable, and without which it gets reversed inside a month:** prose
+**stays** when it is a general guide — what something means, how to use or update it. It **goes** when
+it is update history or a log entry. Not *prose versus no prose*, which is the reading that produces
+configs nobody can use.
+
+Read against this step's four constraints, in order:
+
+- **Which document governs.** Wherever the project already states what its own instruction files may
+  contain. **Where nothing does, that absence is the finding and creating the home is the work** —
+  this step's first constraint applied to its own example.
+- **What it costs to load.** Three sentences, paid wherever they are written. They go in the document
+  that governs writing, which a session loads when it writes — never in the always-loaded file whose
+  growth the rule exists to stop.
+- **Extends, narrows or replaces.** It **extends** F3. F3 asks *does this prose decide anything
+  future* at audit time; this asks the same question at write time. Nothing in F3 changes, and a
+  project adopting only one of the two still holds a coherent rule.
+- **Collision.** None known. Where a project has already settled what its instruction files carry,
+  that rule stands and this one is reported to its owner rather than merged over it.
+
+**One measured instance, dated because it is one file:** a config read on every run of a single
+procedure reached 16,159 bytes, of which the keys and their guidance were 3,128 and the other 13,031
+was narrative no schema had asked for. The cut alone would have regrown; what made it durable was
+adopting the rule the same day. Measured 2026-08-23 in a sibling repository.
+
 **Leave at least one thing that re-measures without being asked** — a check that runs on a trigger the
 project already has, or an explicit statement that none is possible and why. **A standing operation
 that depends on somebody remembering to look is not standing**, and *review this annually* is that

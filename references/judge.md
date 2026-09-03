@@ -111,7 +111,7 @@ being cheap.
 | **F1** | **What loads, and when** | Anything paid every turn that is needed on few of them. Dynamic and on-demand loading; separating operative instruction from historical narrative |
 | **F2** | **Redundancy and contradiction in the record** | The same fact in several homes, or two statements that cannot both be current. Cumulative rules consolidated into one statement with no detail lost; stale and deprecated information; records the project does not own |
 | **F3** | **Prose that is not doing work** | Text that neither states a fact nor decides a future question |
-| **F4** | **Model work that should be deterministic** | Anything the model does per session that a program could do once. A script that lists or processes instead of the model reading and reasoning; installing an existing component rather than re-deriving it; simplifying structures **wherever no human reads them** |
+| **F4** | **Model work that should be deterministic** | Anything the model does per session that a program could do once. A script that lists or processes instead of the model reading and reasoning; installing an existing component rather than re-deriving it; **converting an input into a cheaper format before it is read**; simplifying structures **wherever no human reads them** |
 | **F5** | **Tool and workflow economics** | When a cost is paid rather than how large it is. Gate output on a green run; a gate that must run per task against one that may run per release; targeted runs against whole suites; delegating read-heavy exploration |
 | **F6** | **Acts that reprice the context** | Something done mid-session that changes no file and re-charges the whole window: switching model or effort level, toggling fast mode, connecting a tool source whose catalogue loads up front, enabling a plugin that ships one, compacting, upgrading the harness and resuming a long session. Also where a subject sits against the cache — paid warm, paid cold, or re-written every turn |
 
@@ -193,6 +193,23 @@ found — the rule step 5 already applies to every catalogue entry.
 collects costs that change *when* rather than *how much*. The taxonomy gains a family here, not a
 sixth surface: the surfaces say where a cost sits and E is where a cost with no file sits, while the
 family says what kind of thing it is.
+
+### Input format is F4, and the same test is what says so
+
+A screenshot, or a PDF page delivered as both its text and an image of itself, prices identical
+content differently. The remedy is neither a split nor a deletion, so a reader looking under F1 finds nothing and concludes the
+taxonomy has no answer. It has: **converting an input before it is read is a program doing once what
+the model would otherwise pay for on every read**, which is F4's sentence unchanged.
+
+**F4 was widened rather than a family added, and F6's own test is why.** A new family has to name a
+unit none of the existing families takes. A repricing act passed that test — it has neither a file nor
+a command. A format remedy fails it, because its unit **is** a file and F1 through F4 all take one.
+
+What is true instead, and worth writing down because it is the observation that sends a reader looking
+for a new family: F1 through F5 assume the unit is a document **whose size is the question**. That is
+an assumption about the families, not about their unit — and the test is on the unit. **A taxonomy
+that grows a family every time an assumption is violated stops discriminating**, which is the same
+failure the paragraph above refuses in the other direction.
 
 ---
 
@@ -320,7 +337,7 @@ list, an unranked row is **forced** into one because nowhere else exists.
 
 ---
 
-## The finding record — twelve fields, all of them
+## The finding record — thirteen fields, all of them
 
 **Operative or it is decoration.** A reader must be able to act on a finding without the audit's
 author present.
@@ -331,6 +348,7 @@ author present.
 | Surface | A, B, C, D or E |
 | Family | F1–F6 |
 | Cache | `warm`, `cold`, `rewritten` or `n/a` — how the subject is paid |
+| Recurrence | `every-turn`, `per-activation`, `turns-remaining` or `n/a` — what multiplies the cost |
 | Finding | what is costing, stated as a fact about the repository |
 | Change | what to do — **a hypothesis** |
 | Gain | a band, with the inventory figure it rests on |
@@ -349,6 +367,27 @@ how much: three subjects of identical size are charged differently depending on 
 re-sent from cache every turn, read fresh once a session, or invalidated and re-written — precisely
 the distinction a byte count cannot make. It stays ordinal, as the bands are. A finding whose subject
 never enters the context window writes `n/a`, which like `Risk: none` is a value and not a blank.
+
+**`Recurrence` names the multiplier and declines to order it.** A payment rule in `measure.md` prices
+a single event; what multiplies that event is a separate fact, and this field is where it goes.
+
+| Value | What multiplies the cost |
+| :--- | :--- |
+| `every-turn` | every turn of every session — tier 1 of the load path |
+| `per-activation` | how often some activity runs: a tier 2 or 3 document, a hook, a rule triggered by what is being edited, a scheduled fire. **The frequency belongs to the activity, never to a file** |
+| `turns-remaining` | the turn it lands on, and every turn after it in that session |
+| `n/a` | the subject never enters the context window |
+
+**It is nominal, not ordinal, and that is deliberate.** `Cache` orders; this does not. A
+`per-activation` file on an hourly activity outprices a `turns-remaining` item landing at turn 39 of
+40, so ordering any two values needs a **rate** — and this method holds no rates, for the reason the
+scope statement in `measure.md` already gives. The field's work is therefore to say whether two
+findings are comparable on frequency at all, and to **refuse the comparison when they are not.** That
+is a narrower claim than `Cache` makes, and it is the one the evidence supports.
+
+**No product is taken between `Recurrence`, `Cache` and a band.** Three independent dimensions.
+Early-and-cold and late-and-warm are different findings, and a product collapses the pair into a
+number that names neither.
 
 **A per-item band is a first-class value.** A finding that closes per instance breaks *closed means
 finished*, which every status check assumes. One record carried `xs` **each** since the day it was

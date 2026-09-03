@@ -51,9 +51,9 @@ unknown denominator.**
 
 | | Surface | What it holds | Why it is separate |
 | :--- | :--- | :--- | :--- |
-| **A** | **The load path** | What enters context without anyone asking — instruction or rule files at every scope, any persistent store the agent recalls from, whatever is carried over from the last session, the catalogue of capabilities the agent is offered, and the tool interface | Paid on **every** turn of **every** session, so a saving here compounds against all the others. Its items differ in **who controls them** |
-| **B** | **The read path** | What a session must read to do one unit of work — the specification, the conventions, the lessons, the index, the work item, its neighbours, the source it edits | Paid once per session, and it grows with the project's age |
-| **C** | **Tool output** | What commands print back — gate reports, per-row verdict listings, test suites, search results | Paid per invocation, and the only surface where a tool's own default decides the cost |
+| **A** | **The load path** | What enters context without anyone asking — instruction or rule files at every scope, any persistent store the agent recalls from, whatever is carried over from the last session, hooks that fire on tool events, the environment block the harness appends, every scheduled task, the catalogue of capabilities the agent is offered, and the tool interface | Its tier 1 is paid on **every** turn of **every** session; the rest is paid once per activation. Its items differ in **who controls them**, and in **how often each is paid** |
+| **B** | **The read path** | What a session must read to do one unit of work — the specification, the conventions, the lessons, the index, the work item, its neighbours, the source it edits, **in whatever format each of them arrives in** | Paid on the turn it is read and on every turn after it, and it grows with the project's age |
+| **C** | **Tool output** | What commands print back — gate reports, per-row verdict listings, test suites, search results | Paid on the invocation that produced it, and again on every turn after it, and the only surface where a tool's own default decides the cost |
 | **D** | **Write volume** | What a session produces — work-item prose, log rows, commit messages, the reconcile edits a closure owes | Paid twice: once written, and again when the next session reads it as surface B |
 
 **E — workflow and tooling** cuts across all four: when a gate *must* run rather than *may*, whether a
@@ -61,18 +61,55 @@ suite runs whole or targeted, whether exploration searches or reads, whether rea
 delegated, how a session hands over. Its findings change **when** a cost is paid rather than how large
 it is, so report E as its own section.
 
+**A payment rule above names one event. The cost is that event multiplied by how often it recurs**,
+and the multiplier is the finding record's `Recurrence` field (`judge.md`), which names it and
+declines to order it. Read the two together, because a rule read alone invites the wrong sum: a
+conversation is re-sent from the top on every turn, so a 3,000-token tool output at turn 4 of a
+40-turn session is not paid per invocation once — it is paid 37 more times.
+
+**Compounding is a recurrence value, not a property of surface A.** A saving on B or C compounds too,
+against the turns that follow it. What is unique to surface A's tier 1 is that its multiplier is
+*every* turn of *every* session — the extreme case, not a different kind of case.
+
+**Unattended execution is an item class on surface A, reported here under E.** A scheduled task, a
+background job or a running agent team — a cron entry, a timed routine, a subagent left working —
+fires with nobody present and re-sends the whole context on every fire. Nothing on the filesystem changes when its interval does, so **no byte count reaches it**:
+its cost is `per-activation` where the activation is a clock. It earns no surface and no family of its
+own — a new one has to name a unit none of the existing ones takes (`judge.md`, *F6's unit*), and a
+scheduled task's unit is the load path it re-sends. Surfaces A-D also rest on *every agent-driven
+repository has all four*; most have no scheduled task, so a fifth surface would be empty in the common
+case and an audit skipping it would be skipping nothing.
+
+**Set each interval against the cache lifetime and state the result in `Cache` vocabulary.** A task
+firing less often than the cache lives is paid **cold** on every fire; one firing inside it is paid
+**warm**. That is the whole relation, it needs no lifetime figure, and a figure is refused here for
+the reason this method refuses every rate. The consequence is worth stating because it reads
+backwards: **running a task more often can be cheaper.** Reported behaviour, not measured here.
+
 ### Tiers, and why only surface A gets a budget
 
 | Tier | Loaded | Membership rule |
 | :--- | :--- | :--- |
 | 1 | every turn | **What the harness loads without being asked.** A property of the tree, not a list someone updates |
-| 2 | when work of a kind starts | What a packaged procedure or workflow document pulls in when it activates |
+| 2 | when an activity of a kind starts | What a packaged procedure or workflow document pulls in when it activates, and anything else an **event** triggers: a hook firing on a tool call, a rule that loads because of what is being edited |
 | 3 | when a phase or mode begins | What tier 2 loads one at a time, for the branch actually taken |
 
 **Only tier 1 gets a budget.** Tiers 2 and 3 are not paid every turn, so a size limit there measures
 the wrong cost; what constrains them is the load-one-at-a-time rule. **Say this explicitly** rather
 than leaving it inferred — it is the visible price of budgeting tier 1 alone, and it means the tier-2
 documents are allowed to grow.
+
+**A tier says when an item loads; recurrence says how often that happens.** They are different
+questions, and the tier model answers only the first. Tiers 2 and 3 are paid **per activation**, so
+their cost is size times activations — a product no byte count reaches, because the number of
+activations belongs to the activity and not to any file.
+
+**A per-turn audit therefore reports a tier-2 file as free, and the arithmetic is the smaller half of
+the error.** One config read on every run of a single procedure went unmeasured for months at 16,159
+bytes, of which 13,031 was narrative no schema asked for. The worse half is that most of it
+**duplicated the always-loaded file** — so a session could act on the stale on-demand copy while the
+fresh authoritative one sat in its context, and nothing reads such a file between runs, so nothing
+could catch it. Measured 2026-08-23 in a sibling repository, and dated because it is one file.
 
 **Express the budget as a relation, never as a constant.** Bound tier 1 against something else counted
 from the same tree, so that re-measuring changes a measurement and leaves the rule alone.
@@ -103,6 +140,12 @@ item inventoried in step 1 gets one of three values.
 **Why this is a field and not a remark.** Without it, an audit converts *I cannot reach this* into
 *this is not worth doing*, and those read identically in a ranking while being different facts.
 
+**A controller says who can change an item. It never says the item's size is fixed.** The environment
+block a harness appends — working directory, platform, shell, and a summary of the repository's
+version-control state — is `harness` by controller and **sized by the project**. A project can
+therefore influence a cost it cannot control, and a reader who takes `harness` to mean *nothing here
+moves* will not look.
+
 **Addressability is measured, never assumed — in both directions.** This method's first run got it
 wrong twice, in opposite directions, on the same item: the largest thing on its load path was first
 written off as untouchable by reasoning about where the files came from, then banded on the whole of
@@ -118,17 +161,50 @@ That boundary is worth more than the tokens it failed to save.
 
 ## The steps
 
-1. **Inventory the load path (A).** Everything that enters context unasked, with its size and its
-   controller. Whatever your agent calls them, look for: instruction or rule files at every scope; any
-   persistent store the agent recalls from by itself; anything carried over from a previous session;
-   **the catalogue of capabilities the agent is offered** — the name-and-description listing of
-   whatever it can invoke, paid whether or not the project could use one; and how much of the tool
-   interface is present before a tool is chosen. Establish membership by observation. **The item you
-   cannot change still belongs in the inventory, marked.**
+1. **Inventory the load path (A).** Everything that enters context unasked, with its size, its
+   controller and its recurrence. Whatever your agent calls them, look for: instruction or rule files
+   at every scope; any persistent store the agent recalls from by itself; anything carried over from a
+   previous session; **rules that load because of what is being edited**, which arrive mid-session and
+   unasked; **hooks that fire on tool events**, whose output enters context; **the environment block
+   the harness appends** — working directory, platform, shell, and a summary of the repository's
+   version-control state; **every scheduled task or background job, with its interval**; **the
+   catalogue of capabilities the agent is offered** — the name-and-description listing of whatever it
+   can invoke, paid whether or not the project could use one; and how much of the tool interface is
+   present before a tool is chosen. **The item you cannot change still belongs in the inventory,
+   marked.**
+
+   **Establish membership by observation — and observe the right thing.** Most of what loads at
+   startup is invisible in the terminal: hook output prints nothing, and the environment block and the
+   tool catalogue scroll past nobody. So the observation is of the agent's **own report of its
+   context**, never of what was displayed. A load path read off the screen is a list of the items that
+   happened to be loud.
+
+   **Unattended execution is the one item on this list that observation does not reach**, and it is
+   worth knowing before the inventory starts. A context report describes the session in front of you;
+   a schedule that fires when nobody is there appears in none of it. That item is **queried**, from
+   whatever the harness offers for listing scheduled tasks and running jobs — and where nothing offers
+   it, the inventory records that the item could not be enumerated rather than that there were none.
+   An unobservable item recorded as absent is the one error on this step that looks like a clean
+   result.
+
+   **Extending that rule to the tool interface: record whether deferred loading is active, and read it
+   from that same report rather than inferring it from any byte count.** A harness that defers tool
+   schemas lists the deferred pool separately and excludes it from the percentage, so the state is a
+   line to read rather than a quantity to deduce. Then check for an override: a base-URL, auth-token or
+   gateway variable routing the agent through a proxy can turn deferral off **with no warning**, and so
+   can the harness's own switch for it — on one harness, `ENABLE_TOOL_SEARCH`, documented with three
+   settings. Two byte-for-byte identical trees can differ by tens of thousands of tokens per turn on
+   this alone, and **nothing in either tree records which one you are on.**
 
 2. **Inventory the read path (B)** for one representative unit of work, **chosen before the audit
-   starts and named in the report.** Record what was opened, how much of it was needed, and how much
-   was history rather than operative rule.
+   starts and named in the report.** Record what was opened, **in what format**, how much of it was
+   needed, and how much was history rather than operative rule.
+
+   **Format changes the price of identical content**, so an inventory of sizes alone prices the wrong
+   thing. A screenshot is charged as an image, whatever it depicts; a PDF page arriving as both its
+   text and an image of itself is paid twice for one reading. Record the format even when it is plain text, so that
+   *text* is an observation rather than an assumption — and note that the remedy is neither a split nor
+   a deletion but a conversion, which is why it is filed under F4 rather than F1 (`judge.md`).
 
 3. **Inventory tool output (C).** For each gate or command a unit of work runs, the size of what it
    prints on a **green** run. The failing case is rare and its verbosity is usually earned.
@@ -150,7 +226,7 @@ adequate.
 | :--- | :--- | :--- |
 | **A** | ideas, articles, papers | the obvious axis, and the only one most surveys run |
 | **B** | **named tools, by name** | searching for *ideas* never reaches a technique whose name is a product. Six of fourteen new techniques in the one recorded re-run came only from here, and so did its single largest correction |
-| **C** | **the harness's own documented mechanisms** | it found three techniques and had never been treated as a source at all |
+| **C** | **the harness's own documented mechanisms** | it found three techniques and had never been treated as a source at all. Its published model of what a session loads is also the only external check on step 1's enumeration: run one against the other, and take the **taxonomy** rather than the figures, which are usually illustrative and sized to a window that has since moved |
 
 **Declare saturation per axis, and list the empty rounds.** An axis stops when a full round adds
 nothing, **and the round that added nothing is written down.** Without that row a reader cannot judge
@@ -180,6 +256,29 @@ repository.**
 **Any scanning step owes a known-good case before its output is read as a finding.** A twenty-line
 scan in the one recorded run named three defective rows and one of them was its own regular
 expression. The scan was still the right move; one step was missing, not the tool.
+
+**A known-good case is not always enough, and the case that proves it was a mechanical prose-versus-
+rules ratio.** It was proposed as a cheap check that would rank files without anyone arguing about
+prose, built, and run over a sibling tree: dates per KB, and lines carrying changelog phrasing. The
+calibration refused it. The file cut from 16,159 bytes to 1,845 that same morning scored **mid-table**,
+above a document nobody had touched — because the permitted shape for a historical fact ends in a
+date, so a fully compliant file is dense in exactly the token the metric counts. The second signal
+misled the other way: two 25 KB configs carry one date between them and would rank near the bottom,
+and their bulk is guide prose the rule keeps. Ranking by either number and editing the top edits the
+wrong files. Measured 2026-08-23.
+
+**So the check is declined, and the declination is the result.** This scan *had* its known-good case
+and still could not be read as a finding, because a compliant file and a defective one score alike.
+What survives is a ranking for a person to read, reporting what it counted beside the count and saying
+in its own output that a compliant file scores high — and that is not a check, so it moves no exit
+status. **A scan that cannot separate its known-good case from its target is not measuring the thing
+its name claims.**
+
+**A file's size on disk is not what a session pays, and the error runs one way.** A harness may strip
+regions before injecting: one always-loaded instruction file carried 1,839 characters of block comment
+that never reached the session. An audit ranking by raw size therefore **overstates**, always. Subtract
+the stripped regions or report them as their own column — the difference is also a lever, since moving
+an argument into a stripped region costs the file and not the session. Observed 2026-08-16.
 
 **Prove the bytes you counted are what you say they are.** Comment markers, quote styles and block
 delimiters are proxies for *kind*, and each holds until a file uses that syntax for something else — a
