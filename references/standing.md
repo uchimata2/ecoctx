@@ -200,6 +200,22 @@ class outlives them. **A class with no instrument here is recorded as unavailabl
 about an unobservable item recorded as absent. What a bound instrument owes when its figure is
 reported — itself, and what it excludes — the body already states.
 
+**A trigger qualifies when it fires on an act that changes what step 1 would find.** That is the
+test, and it survives a harness whose acts nobody has written down: the entries are the method's own,
+and the acts are whatever your project does to them. This **extends** the prohibition above rather
+than softening it — a dated review fires whether or not anything changed, which is why it was
+refused; these fire because something did.
+
+- **The tool catalogue** — connecting a tool source, or enabling a plugin that ships one. Re-measure
+  what the catalogue costs before a tool is chosen.
+- **Unattended execution** — adding a scheduled task or a background job. Re-measure the interval and
+  what each firing loads: it is the step 1 entry observation does not reach.
+- **Instruction files at every scope** — an edit to one that loads without being asked. Re-measure the
+  tier 1 total against the relation it is bound by.
+
+Named from one harness at one time, and re-checked against your own before a check is wired to them —
+the discipline step 5 already applies to every catalogue entry. **The acts age; the entries do not.**
+
 **Wire the closure gate where a closure happens**, not into the release gate and not as a checklist. A
 list is what goes unread; in the recorded run a finding's row read closed while its task was open, and
 vice versa, invisibly, until a check failed in both directions and caught the session that wrote it.
