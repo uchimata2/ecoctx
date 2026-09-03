@@ -190,6 +190,8 @@ Put this in the closing report, so silence is not read as a clean bill.
   paid needs harness instrumentation this method does not require. **That instrumentation now exists**,
   so this is a choice rather than an impossibility, and the reason to keep it is that artifact sizes
   are what a repository can change — a session total mixes them with how the session was driven.
+  **That reason does not reach the run's own cost**, which nobody acts on; `SKILL.md` rules on it
+  separately and requires a measurement there. The two are about different subjects, not in conflict.
 - **It ranks on context runway, so a cost that is only money is out of the ranking.** Acts that
   reprice a session without changing what sits in the window are named as F6 findings, marked
   `controller: user`, and never banded. Name the ones you saw — the silence is a decision, and unsaid
