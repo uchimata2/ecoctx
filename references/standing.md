@@ -40,6 +40,12 @@ section mark left behind by an extraction, a citation of an id never allocated, 
 a store outside the tree. Row by row, eight small defects. As a class, a gap in what the project's
 gates can see at all — worth a work item, which no single row was.
 
+**Read every occasion's rows, and name the ones you read.** The register is one concept with four
+occasions and they do not share a document (`judge.md`, *The byproduct register*): this run's report,
+the closing report, and wherever the method's own work is tracked. A read-back over one of them is
+not a read-back over the register — and a shape that spans occasions is exactly the kind this step
+exists to find. Say which you read, so a blind spot is declared rather than discovered.
+
 **Split the record's reliability visibly.** A reader who trusts `Finding` and `Change` equally will
 obey a ranking. Say which half held.
 
@@ -146,6 +152,10 @@ Put this in the closing report, so silence is not read as a clean bill.
   paid needs harness instrumentation this method does not require. **That instrumentation now exists**,
   so this is a choice rather than an impossibility, and the reason to keep it is that artifact sizes
   are what a repository can change — a session total mixes them with how the session was driven.
+- **It ranks on context runway, so a cost that is only money is out of the ranking.** Acts that
+  reprice a session without changing what sits in the window are named as F6 findings, marked
+  `controller: user`, and never banded. Name the ones you saw — the silence is a decision, and unsaid
+  it reads as an omission.
 - **It cannot separate operative prose from narrative mechanically.** Section sizes are measured; the
   split inside a section is a reader's judgement, and every F1 or F3 finding resting on one says so.
 - **It does not price attention.** A shorter context is assumed better. Where a cut would make the

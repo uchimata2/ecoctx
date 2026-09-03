@@ -113,6 +113,7 @@ being cheap.
 | **F3** | **Prose that is not doing work** | Text that neither states a fact nor decides a future question |
 | **F4** | **Model work that should be deterministic** | Anything the model does per session that a program could do once. A script that lists or processes instead of the model reading and reasoning; installing an existing component rather than re-deriving it; simplifying structures **wherever no human reads them** |
 | **F5** | **Tool and workflow economics** | When a cost is paid rather than how large it is. Gate output on a green run; a gate that must run per task against one that may run per release; targeted runs against whole suites; delegating read-heavy exploration |
+| **F6** | **Acts that reprice the context** | Something done mid-session that changes no file and re-charges the whole window: switching model or effort level, toggling fast mode, connecting a tool source whose catalogue loads up front, enabling a plugin that ships one, compacting, upgrading the harness and resuming a long session. Also where a subject sits against the cache — paid warm, paid cold, or re-written every turn |
 
 ### F3 needs a line drawn, and drawing it is part of the work
 
@@ -162,6 +163,36 @@ without doing so.
 **Sweep for existing homes before writing a new destination.** Otherwise an F1 split manufactures F2
 duplication: three paragraphs in one split's scope needed no new home at all, because their content
 was already in two other documents.
+
+### F6's unit is an act, and that is why it is not F5
+
+F1 through F5 each take a file or a command as their unit. A repricing act has neither: nothing in
+the tree changes, nothing runs, and the next turn costs an order of magnitude more than the last.
+Stretching F5 to cover it would make F5 mean *everything that is not a file*, which is how a taxonomy
+stops discriminating.
+
+**F6 findings are named, marked `controller: user`, and not banded.** This family is where the
+artifacts-not-sessions boundary becomes visible: a repricing act is how the session was driven,
+inherited by no clone, reachable only by whoever is present, and `controller: user` was defined to
+say exactly that. The family reports what it sees and declines to measure it — which also keeps the
+rubric out of a vendor's price list, where the rates change without notice and no band built on them
+stays true.
+
+**One dated measurement is why the family exists, and it is the only figure in it.** A single
+session's usage readout: 5.8M tokens of cache read against 11.1k of fresh input, and 1.1M of cache
+write — roughly 520 tokens re-sent from cache for every one charged at full price. A byte count over
+the load path prices the 11.1k and is silent about the rest. Measured 2026-09-03, and stated with its
+date because it is one session on one harness rather than a constant.
+
+**The acts in the family row, and the magnitude claimed for them, are reported behaviour rather than
+anything measured here.** They belong to one harness at one time. Read the row as what to look for,
+re-check it against the vendor's own documentation before an audit rests on it, and record what you
+found — the rule step 5 already applies to every catalogue entry.
+
+**F6 findings are reported under surface E**, the one that already cuts across the other four and
+collects costs that change *when* rather than *how much*. The taxonomy gains a family here, not a
+sixth surface: the surfaces say where a cost sits and E is where a cost with no file sits, while the
+family says what kind of thing it is.
 
 ---
 
@@ -254,10 +285,27 @@ later, on a trigger nobody watches is a phase that does not run.
 ## The byproduct register
 
 **Checking every file for one thing means seeing other things.** Record them; keep them out of the
-ranking.
+ranking. Anything noticed that is not token efficiency goes in the register, with the file and what
+was seen.
 
-- Anything noticed that is not token efficiency goes in a register at the end of the project's report,
-  with the file and what was seen.
+**One register, several occasions.** A row goes in the output of whatever occasion produced it — not,
+as this section said until 2026-09-03, only at the end of a phase 1 run. A second register for the
+other occasions would be the F2 defect this method exists to measure, so the concept stays single and
+each occasion names its destination instead:
+
+| Occasion | Where its rows go |
+| :--- | :--- |
+| A phase 1 run | The project's report, in its register section |
+| A step 12 grading pass | The closing report's register section, beside the grading table |
+| A step 15 catalogue refresh | The same closing report — the refresh has no report of its own |
+| Work on the method itself | Wherever the method's own work is tracked, marked *register row, not ranked* so an unranked entry reads as deliberate rather than as an omission |
+
+**The last row is the one that was missing, and leaving it out cost something.** An observation made
+while developing the method has no run to attach it to, so it goes into a tracker whose every other
+entry is ranked — and reads as an under-specified task rather than a deliberately unranked one. That
+is this section's own warning arrived at backwards: instead of an unranked row leaking into a ranked
+list, an unranked row is **forced** into one because nowhere else exists.
+
 - **Never ranked, never banded, never a finding id.** Mixing them puts an unranked observation into a
   list someone is using to buy work.
 - A register entry that is really a defect is raised as its own work item at review, and the row then
@@ -272,7 +320,7 @@ ranking.
 
 ---
 
-## The finding record — eleven fields, all of them
+## The finding record — twelve fields, all of them
 
 **Operative or it is decoration.** A reader must be able to act on a finding without the audit's
 author present.
@@ -281,7 +329,8 @@ author present.
 | :--- | :--- |
 | id | stable, cited from child work and from other projects reusing this method |
 | Surface | A, B, C, D or E |
-| Family | F1–F5 |
+| Family | F1–F6 |
+| Cache | `warm`, `cold`, `rewritten` or `n/a` — how the subject is paid |
 | Finding | what is costing, stated as a fact about the repository |
 | Change | what to do — **a hypothesis** |
 | Gain | a band, with the inventory figure it rests on |
@@ -295,12 +344,18 @@ author present.
 whether the work is possible from here; a single field forces one of those answers to be a guess. A
 finding can be `any` and `harness` at once — every project pays it and no project can change it.
 
+**`Cache` orders and never prices.** `warm`, `cold` and `rewritten` say *how* a subject is paid, not
+how much: three subjects of identical size are charged differently depending on whether each is
+re-sent from cache every turn, read fresh once a session, or invalidated and re-written — precisely
+the distinction a byte count cannot make. It stays ordinal, as the bands are. A finding whose subject
+never enters the context window writes `n/a`, which like `Risk: none` is a value and not a blank.
+
 **A per-item band is a first-class value.** A finding that closes per instance breaks *closed means
 finished*, which every status check assumes. One record carried `xs` **each** since the day it was
 written and nothing read it, because the marker existed and the schema for reading it did not.
 
-**The record has no field for what the finding bought, and it should not gain one.** A twelfth field
-would be paid by every finding to serve one step that runs once. **What the closure owes instead is
+**The record has no field for what the finding bought, and it should not gain one.** A field serving
+one step that runs once is paid by every finding written. **What the closure owes instead is
 one line** — the measured outcome, in the record that already exists, written on the day it is known.
 Reconstructing thirteen outcomes afterwards cost 80,721 bytes across fourteen closed records and is
 the most expensive step in the method.

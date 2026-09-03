@@ -84,7 +84,9 @@ of the three fails the run.
 ## What this method cannot see
 
 Say this in the report, so silence is not read as a clean bill. It measures **artifacts, not
-sessions** — file sizes are what a session *could* pay. It **cannot separate operative prose from
+sessions** — file sizes are what a session *could* pay. It **ranks on context runway alone**, so an
+act that reprices a session without changing what sits in the window — family F6 — is named, marked
+`controller: user`, and never banded. It **cannot separate operative prose from
 narrative mechanically**. It **does not price attention**: a shorter context is assumed better, and
 where a cut would make the agent guess, that is a risk field rather than a measurement. And the
 screening partition in step 7 **says nothing about the catalogue's completeness** — it summed

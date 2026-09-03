@@ -18,6 +18,26 @@ not searched for. What is noticed anyway goes in the byproduct register and is n
 follows from runway and is not the axis. A finding that saves tokens without lengthening the runway is
 still a finding, and it ranks below one that does both.
 
+**A cost that is only money is named, never ranked, and the silence is a decision rather than an
+omission.** Some acts move a session's bill by an order of magnitude while leaving the window
+untouched — the same bytes sit in it before and after — so this axis cannot rank them at all. An
+audit that quietly scored them last would be reporting an accident of the rubric as a judgement.
+Record them as F6 findings (`judge.md`), mark them `controller: user`, keep them out of the ranked
+list, and **say in the report that you did.**
+
+**The method names repricing acts and declines to price them**, which is the artifacts-not-sessions
+boundary held rather than widened. Such an act changes no file and runs no command; it is entirely
+how the session was driven, is inherited by no clone, and is reachable only by whoever is present.
+Naming it costs nothing and is worth doing. Measuring it would need a rate model, and rates belong in
+a run's report, where a date makes them honest.
+
+**The worked example is delegation, and it earns its place because the two verdicts disagree while
+every figure agrees.** Delegating read-heavy exploration keeps the file reads out of the main window
+and returns a summary; the same events cost more in total than reading inline. Under context runway
+that is an unambiguous win. Under money it is a loss. This method reports the runway win, records the
+money cost beside it, and ranks only the first — so a reader who checks the total finds the
+arithmetic already stated rather than concluding the method missed it.
+
 **No fact loses its only home.** Layering and load-on-demand are the instruments; deletion is not. A
 finding whose gain depends on a rule becoming unfindable, a gate weakening, or a lesson disappearing
 is recorded with that risk stated and ranks below everything else.

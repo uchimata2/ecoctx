@@ -51,19 +51,19 @@ recorded run did not survive being checked.
 ## What it costs to have installed
 
 A skill that audits context economy and is expensive to keep around is the joke that writes itself,
-so here is the bill. Measured 2026-08-15, in bytes off the filesystem.
+so here is the bill. Measured 2026-09-03, in bytes off the filesystem.
 
 | Stage | Bytes | Paid |
 | :--- | ---: | :--- |
 | Routing description | 497 | every session, whether or not you use it |
-| `SKILL.md` body | 5,074 | when the skill activates |
-| `references/measure.md` | 11,837 | steps 1 to 5 only |
-| `references/judge.md` | 17,796 | steps 6 to 11 only |
-| `references/standing.md` | 9,347 | steps 12 to 16 only |
+| `SKILL.md` body | 5,260 | when the skill activates |
+| `references/measure.md` | 13,389 | steps 1 to 5 only |
+| `references/judge.md` | 22,135 | steps 6 to 11 only |
+| `references/standing.md` | 10,157 | steps 12 to 16 only |
 
 497 bytes is the only figure that compounds. Everything below it is paid once, by a session that
 asked for it, and never two references at a time, because the body routes to exactly one. The largest
-possible single-phase cost is 5,074 plus 17,796, or 22,870 bytes, and the common case is smaller.
+possible single-phase cost is 5,260 plus 22,135, or 27,395 bytes, and the common case is smaller.
 
 The description started at 610 and lost 18.5% to duplication with every trigger kept. That trim is
 the method applied to itself, and it is the first measurement this project made.
