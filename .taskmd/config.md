@@ -102,6 +102,22 @@ Order is rank, best first: `critical` outranks `high`, and `xs` is cheaper than 
 | business_value | critical, high, medium, low |
 | effort | xs, s, m, l, xl |
 
+## The one label that is not a field
+
+`register-row` marks an issue that carries a **byproduct register** row rather than a task. It has no
+colon, so the binding's rule 2 never reads it as `<field>:<value>` and it cannot collide with a
+vocabulary — the same way GitHub's own default labels sit here harmlessly.
+
+It exists because the register's occasions each name a destination, and the destination for an
+observation made while working on the method is this tracker (`references/judge.md`, *The byproduct
+register*). Such a row is never ranked and never banded, so it carries no `business_value` and no
+`effort`. On a board where every other issue has both, that reads as an omission unless something
+says otherwise. This label is what says otherwise.
+
+**It is a marker, not a status.** It changes no lifecycle and no rendering. Where a row turns out to
+be a real defect, the work is raised as its own issue and the row points at it, which is the
+register's own rule and not a special case here.
+
 ## The one thing to get right
 
 `status` is the fact; the open or closed state of an issue is a **rendering** of it, written from
