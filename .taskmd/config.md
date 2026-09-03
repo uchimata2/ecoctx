@@ -102,6 +102,26 @@ Order is rank, best first: `critical` outranks `high`, and `xs` is cheaper than 
 | business_value | critical, high, medium, low |
 | effort | xs, s, m, l, xl |
 
+## Work packages and order
+
+Neither field is enumerated, so neither is a label: both live in the property block at the top of an
+issue body, by the binding's rule 3.
+
+`work_package` groups the backlog into seven, run in this sequence — **A-ground-clearing**,
+**B-decided-spine**, **C-measure**, **D-judge**, **E-standing**, **F-tooling**,
+**G-publication-gate**. `order` is one contiguous sequence across the **whole** backlog rather than
+one per package, so a row's position reads without knowing which package it belongs to.
+
+Two invariants, and nothing checks either automatically:
+
+- **Every `blocked_by` edge points backwards in the order.** A blocker ordered after the thing it
+  blocks is a scheduling contradiction, and the order is what a reader trusts.
+- **`related` is written at both ends or it does not exist**, because this backend derives no inverse
+  for it (see *Edges*). A pair written once is a half-edge that reads as absent from the other side.
+
+**A byproduct register row is never ranked**, so it carries `work_package: outside-ranking`, no
+`order`, and the label below.
+
 ## The one label that is not a field
 
 `register-row` marks an issue that carries a **byproduct register** row rather than a task. It has no
