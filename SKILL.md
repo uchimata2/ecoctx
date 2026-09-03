@@ -55,6 +55,13 @@ Two documents and one register, and the split between them is by **who can act**
 one thing means seeing other things; record them, never band them, and read the register **for a
 shape** at step 12 rather than only row by row.
 
+**The run's own cost is what the audit consumed, and it is never the subject's load path.** Step 1
+inventories the **subject's** load path; reporting that figure under the other name is how the one
+externally assessed run recorded a criterion as met that it had not met. The audit's own consumption
+is a **disclosure** — never screened, banded, ranked or raised — stated with the instrument that
+produced it and what that instrument excludes. Where the harness offers none, say so rather than
+substitute an artifact sum: unlabelled, it reads exactly like a measurement.
+
 ## Two rules that decide most disagreements
 
 **Only tier 1 gets a budget, and express it as a relation rather than a constant.** Tier 1 is what the
@@ -83,8 +90,8 @@ of the three fails the run.
 
 ## What this method cannot see
 
-Say this in the report, so silence is not read as a clean bill. It measures **artifacts, not
-sessions** — file sizes are what a session *could* pay. It **ranks on context runway alone**, so an
+Say this in the report, so silence is not read as a clean bill. It measures the subject in
+**artifacts, not sessions** — file sizes are what a session *could* pay. It **ranks on context runway alone**, so an
 act that reprices a session without changing what sits in the window — family F6 — is named, marked
 `controller: user`, and never banded. It **cannot separate operative prose from
 narrative mechanically**. It **does not price attention**: a shorter context is assumed better, and

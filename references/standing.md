@@ -176,6 +176,46 @@ project already has, or an explicit statement that none is possible and why. **A
 that depends on somebody remembering to look is not standing**, and *review this annually* is that
 dependency with a date attached.
 
+**No instrument is standing by itself — the trigger is what makes it so, and the instrument is what
+the trigger reads.** Four of the five classes below report only when somebody looks; the fifth is
+written whether anyone does or not, and summing it is still an act somebody performs. A check needs
+both halves, and naming an instrument in place of a trigger rebuilds the dependency this step has just
+refused, with a tool instead of a date.
+
+**Name the class, never the command.** Each is named by what it reports, so a reader can decide
+whether their own harness has one:
+
+- **A context readout** — what is in the window now, itemised, with sizes. Step 1 already depends on
+  this one.
+- **A usage attribution** — consumption charged to a named unit: a skill, a tool, a delegate, or a
+  shape of session.
+- **A re-read split** — how much of a session was history re-sent, against how much was new work.
+- **A running meter** — the rate, while the session is going rather than after it.
+- **A per-reply record** — what each reply cost, written down, so a session total is summed rather
+  than estimated.
+
+**The run binds each class to whatever it actually has and records the binding in its own output,
+never in the method.** A harness's names date within a release and are wrong everywhere else; the
+class outlives them. **A class with no instrument here is recorded as unavailable**, by step 1's rule
+about an unobservable item recorded as absent. What a bound instrument owes when its figure is
+reported — itself, and what it excludes — the body already states.
+
+**A trigger qualifies when it fires on an act that changes what step 1 would find.** That is the
+test, and it survives a harness whose acts nobody has written down: the entries are the method's own,
+and the acts are whatever your project does to them. This **extends** the prohibition above rather
+than softening it — a dated review fires whether or not anything changed, which is why it was
+refused; these fire because something did.
+
+- **The tool catalogue** — connecting a tool source, or enabling a plugin that ships one. Re-measure
+  what the catalogue costs before a tool is chosen.
+- **Unattended execution** — adding a scheduled task or a background job. Re-measure the interval and
+  what each firing loads: it is the step 1 entry observation does not reach.
+- **Instruction files at every scope** — an edit to one that loads without being asked. Re-measure the
+  tier 1 total against the relation it is bound by.
+
+Named from one harness at one time, and re-checked against your own before a check is wired to them —
+the discipline step 5 already applies to every catalogue entry. **The acts age; the entries do not.**
+
 **Wire the closure gate where a closure happens**, not into the release gate and not as a checklist. A
 list is what goes unread; in the recorded run a finding's row read closed while its task was open, and
 vice versa, invisibly, until a check failed in both directions and caught the session that wrote it.
@@ -187,9 +227,11 @@ vice versa, invisibly, until a check failed in both directions and caught the se
 Put this in the closing report, so silence is not read as a clean bill.
 
 - **It measures artifacts, not sessions.** File sizes are what a session *could* pay. What it actually
-  paid needs harness instrumentation this method does not require. **That instrumentation now exists**,
-  so this is a choice rather than an impossibility, and the reason to keep it is that artifact sizes
+  paid needs harness instrumentation this method does not require. **That instrumentation now exists**, in the
+  classes step 16 names, so this is a choice rather than an impossibility, and the reason to keep it is that artifact sizes
   are what a repository can change — a session total mixes them with how the session was driven.
+  **That reason does not reach the run's own cost**, which nobody acts on; `SKILL.md` rules on it
+  separately and requires a measurement there. The two are about different subjects, not in conflict.
 - **It ranks on context runway, so a cost that is only money is out of the ranking.** Acts that
   reprice a session without changing what sits in the window are named as F6 findings, marked
   `controller: user`, and never banded. Name the ones you saw — the silence is a decision, and unsaid
