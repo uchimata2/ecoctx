@@ -31,14 +31,34 @@ Six patterns that carried over in the one recorded run, stated as structures rat
 
 ## 7. Screen for applicability
 
-Each technique is **adopted**, **rejected**, or **deferred**. A rejection names the constraint it
-collides with; a deferral names what would close it.
+Each technique is **adopted**, **rejected**, **deferred**, or **counterproductive**. A rejection
+names the constraint it collides with; a deferral names what would close it.
 
-**The three are a partition, and a technique in none of them fails the audit.** A silent fourth
+**The four are a partition, and a technique in none of them fails the audit.** A silent fifth
 category is how an account that looks complete gets shipped.
 
-**The partition is not a coverage claim, and it reads like one.** *Adopted + rejected + deferred =
-every technique gathered* is arithmetic over what you happened to gather. In the one recorded run it
+### `counterproductive` is the fourth value, and it exists because a rejection would have lied
+
+The first three values all answer *does this apply here*. A technique that **applies everywhere and
+makes things worse** answers that question **yes**, and still must not be adopted. Filed as a
+rejection it joins the bucket a reader scans for *things that did not fit us* — so the record states
+that the technique does not apply, which is false, and the most useful finding in the set is the one
+that gets buried.
+
+**A `counterproductive` verdict owes two statements**, or it is a label rather than a judgement:
+
+- **what it costs**, in the same terms the audit uses for everything else;
+- **what it is widely recommended for.** This is the half that distinguishes the value from a
+  rejection. An ordinary rejection is a fact about this project; this one is a correction to a claim
+  in the field, and it is worthless to a reader who cannot see which claim.
+
+**The precedent is this file's own.** §8 records that two of the six bands exist because the first run
+needed them and a four-value table could not express an honest case. This is that, one partition over
+— and the same discipline applies: a value invented in the field means the rubric was
+under-specified, which is step 14's business, not a licence to keep adding values.
+
+**The partition is not a coverage claim, and it reads like one.** *Adopted + rejected + deferred +
+counterproductive = every technique gathered* is arithmetic over what you happened to gather. In the one recorded run it
 summed correctly, and read as complete, over **nineteen entries of a catalogue that turned out to hold
 35** — right about a bit over half. Step 5's search record is the only guard, and it is weaker than
 the partition: a search record can be read and judged, but nothing can prove a survey complete.
@@ -65,6 +85,53 @@ first run needed them and the four-value table could not express a gain that is 
 **A band is always read against its own surface.** `L` on the load path and `L` on the read path are
 different quantities, and the record says which.
 
+### `bimodal` needs both sides in the same unit, and the delegate's window is that unit
+
+**A cost side outside this session's window can carry a band, provided it is still a window.** The
+test is the unit, not the location: two figures in **context** can be argued against each other,
+because they are the same quantity measured in two places. A cost in money cannot, which is why the
+scope statement in `measure.md` keeps a money-only cost out of the ranked list entirely.
+
+**So there are two trades here and they are described in almost the same words.** Keeping them apart
+is the whole of this section:
+
+| Trade | Where it is judged |
+| :--- | :--- |
+| runway against **money** | `measure.md`'s scope statement — named, recorded beside the finding, and **never banded** |
+| window against **window** | this band — both figures stated, argued rather than netted |
+
+**The worked example is delegation, and it is the clearest instance in the space.** A delegate reads
+on your behalf and returns a summary, so the reads never enter your window — but the delegate has its
+own window, and it fills it before reading anything: its own system prompt, its own copy of the
+project instruction file, its own tools and skills, then the task prompt.
+
+```
+stayed in the delegate's context        9.9K
+file reads kept out of the main window  6.1K
+returned to the main window              420
+net kept out of main                   5,680
+```
+
+Both sides are context, so the trade is arguable and `bimodal` holds. Measured against the harness's
+published model and an independent walkthrough of the same mechanism, which agree; read 2026-09-03.
+**The money figure is a third quantity** — total tokens billed rise — and it stays out of the band, as
+the scope statement requires. The vendor's own cost multipliers are deliberately not carried here:
+they would do work in a band, and this method refuses a figure that does that without a measurement.
+
+**Three conditions, all required, or delegation is not a saving:**
+
+1. the delegated output is **high volume**;
+2. the detail **will not be needed again** — if it comes back, it was paid twice;
+3. the session has **many turns left**.
+
+The third is what makes it a saving at all, and it is `Recurrence` rather than a new idea: the avoided
+bytes would have been `turns-remaining`, so their value is set by how many turns follow. A delegation
+on the last turn of a session saves nothing and still costs 9.9K.
+
+**One lever worth naming:** the delegate's model can be set separately from the main session's. That
+reduces the isolated work without touching the main session's cache, which makes it the rare
+adjustment with no `Cache` consequence.
+
 **Name the mechanism before writing the band.** A band written off the size of a surface prices the
 wrong thing: one finding in the recorded run was banded on how big its subject was rather than on how
 much of it could be changed, and the reachable share was about a ninth.
@@ -80,7 +147,9 @@ of thirteen; the proposed remedy said what removing it was worth and was wrong m
   and does not deserve it. **Re-measure a remedy before carrying it out, and let the measurement
   refuse it.** Four rows were refused exactly that way; a ranking obeyed instead would have deleted
   two tools' payloads, rebuilt one finding on a timer, and split a small document into four smaller
-  ones.
+  ones. **For a boundary filter that re-measurement has a shape**: install it, run one real noisy
+  command, and show the before against the after — a matched pair on one live invocation, never a
+  recomputed size.
 - **The inventory is what survives.** A finding whose inventory figure is sound and whose remedy is
   refused is **still a good finding**, and *shape refused, still worth doing* is an outcome the record
   should be able to hold. It happened four times in thirteen.
@@ -111,7 +180,7 @@ being cheap.
 | **F1** | **What loads, and when** | Anything paid every turn that is needed on few of them. Dynamic and on-demand loading; separating operative instruction from historical narrative |
 | **F2** | **Redundancy and contradiction in the record** | The same fact in several homes, or two statements that cannot both be current. Cumulative rules consolidated into one statement with no detail lost; stale and deprecated information; records the project does not own |
 | **F3** | **Prose that is not doing work** | Text that neither states a fact nor decides a future question |
-| **F4** | **Model work that should be deterministic** | Anything the model does per session that a program could do once. A script that lists or processes instead of the model reading and reasoning; installing an existing component rather than re-deriving it; **converting an input into a cheaper format before it is read**; simplifying structures **wherever no human reads them** |
+| **F4** | **Model work that should be deterministic** | Anything the model does per session that a program could do once. A script that lists or processes instead of the model reading and reasoning; installing an existing component rather than re-deriving it; **converting what crosses the read boundary into a cheaper form, in either direction** - an input before it is read, an output before it enters; simplifying structures **wherever no human reads them** |
 | **F5** | **Tool and workflow economics** | When a cost is paid rather than how large it is. Gate output on a green run; a gate that must run per task against one that may run per release; targeted runs against whole suites; delegating read-heavy exploration |
 | **F6** | **Acts that reprice the context** | Something done mid-session that changes no file and re-charges the whole window: switching model or effort level, toggling fast mode, connecting a tool source whose catalogue loads up front, enabling a plugin that ships one, compacting, upgrading the harness and resuming a long session. Also where a subject sits against the cache — paid warm, paid cold, or re-written every turn |
 
@@ -210,6 +279,38 @@ for a new family: F1 through F5 assume the unit is a document **whose size is th
 an assumption about the families, not about their unit — and the test is on the unit. **A taxonomy
 that grows a family every time an assumption is violated stops discriminating**, which is the same
 failure the paragraph above refuses in the other direction.
+
+### Output rewritten at the tool boundary is the other half of F4
+
+Surface C is *the only surface where a tool's own default decides the cost*, and measuring it is not a
+remedy. The remedy is to **intercept the command and rewrite what it prints before it reaches the
+context** — and it belongs to F4 for the same reason input conversion does: reading 3,000 tokens of
+build noise to find the one error is work a program could do once.
+
+**F5 is nearer in feel and wrong.** Every F5 remedy changes *how often* output is produced — a gate
+per task against one per release, targeted runs against whole suites. **None changes what the output
+is.** That is the distinction that kept F6 out of F5, applied rather than restated.
+
+Four constraints, and the third is the one that reads as a nicety:
+
+- **Catch by profile, not by name.** Commands that print a lot and say little: installs, builds, test
+  runs, anything with a progress bar. A name list ages; a profile does not.
+- **Keep the signal.** Errors, failures, and the final summary. A filter that saves bytes by hiding a
+  failure has not saved anything.
+- **Leave short output whole.** A filter that fires on everything is a **new failure mode**, not a
+  saving — and it is why such a filter needs a case it must *not* catch, shown able to fire, before
+  its silence means anything.
+- **Install once, at the boundary**, so every later session inherits it with nobody remembering.
+
+**The remedy prints, so it is not a free saving.** A filter installed at the boundary emits its own
+output every time it fires, and that output enters context and is invisible in the terminal (step 1).
+Its recurrence is `per-activation` against the `turns-remaining` of the output it trims — which is
+why it usually wins, and why the figure is a comparison rather than a subtraction.
+
+**The guard on F4, now that it has been widened twice in two batches.** Every entry must be readable
+as *a program does once what the model would otherwise pay for per session*. An entry that cannot be
+read that way does not belong in F4, whatever else is true of it. Without that line F4 becomes
+*everything that is not a file*, which is the failure the F6 paragraph refuses for F5.
 
 ---
 

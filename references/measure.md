@@ -18,6 +18,19 @@ not searched for. What is noticed anyway goes in the byproduct register and is n
 follows from runway and is not the axis. A finding that saves tokens without lengthening the runway is
 still a finding, and it ranks below one that does both.
 
+**The axis's boundary marker is itself one of the most expensive events in a session, and the axis
+must not be read as bounded by something free.** A compaction re-sends the whole conversation in order
+to write its summary, leaves that summary behind as the new floor — priced at **12% of the summed
+conversation to that point** in the harness's published model, read 2026-09-03 — and drops the cache
+that had been making the re-send cheap. So the event this axis counts *up to* costs more than most of
+what the axis ranks.
+
+Two consequences, and the second is the one that catches an auditor out. **Lengthening the runway
+defers that bill as well as the compaction**, so a runway finding is worth more than its own byte
+count. And under #12's ruling compaction is **not** bandable: its cost side is money and a cache while
+its benefit is a freed window, which is the runway-against-money trade and not a window against a
+window. Name it, price it, keep it out of the ranked list.
+
 **A cost that is only money is named, never ranked, and the silence is a decision rather than an
 omission.** Some acts move a session's bill by an order of magnitude while leaving the window
 untouched — the same bytes sit in it before and after — so this axis cannot rank them at all. An
@@ -37,6 +50,12 @@ and returns a summary; the same events cost more in total than reading inline. U
 that is an unambiguous win. Under money it is a loss. This method reports the runway win, records the
 money cost beside it, and ranks only the first — so a reader who checks the total finds the
 arithmetic already stated rather than concluding the method missed it.
+
+**That is the runway-against-money trade, and delegation carries a second one that is not it.** The
+delegate's own window is context, so main-window bytes against delegate-window bytes are two
+measurements of the same quantity and **are** banded — `bimodal`, in `judge.md`, where the figures and
+the three conditions live. Two trades, one subject, and the words for them are nearly identical: this
+sentence exists so a reader meeting one does not think they have met the other.
 
 **No fact loses its only home.** Layering and load-on-demand are the instruments; deletion is not. A
 finding whose gain depends on a rule becoming unfindable, a gate weakening, or a lesson disappearing
@@ -209,6 +228,12 @@ That boundary is worth more than the tokens it failed to save.
 3. **Inventory tool output (C).** For each gate or command a unit of work runs, the size of what it
    prints on a **green** run. The failing case is rare and its verbosity is usually earned.
 
+   **Then say what could be removed without losing the failure signal.** Measuring what a command
+   prints is not a remedy, and this surface is the one where a tool's own default decides the cost, so
+   an inventory that stops at the size has found the whole cost and proposed nothing. The remedy class
+   is F4 (`judge.md`), and it is the one remedy in the method whose demonstration is a matched pair on
+   a live invocation rather than a recomputed figure.
+
 4. **Inventory write volume (D)** for the same representative unit.
 
 5. **Research externally.** How practitioners reduce context and token use with coding agents. Produce
@@ -293,6 +318,13 @@ day while the section it named had **grown**.
 **State the token conversion once and apply it uniformly.** Bytes ÷ 4 is close enough for prose and
 markdown, costs no dependency, and must be labelled an estimate. Never use it to separate two findings
 that a byte count does not already separate.
+
+**Prompt length is a rounding error; prompt vagueness is not.** Typed input has been reported at
+around 0.01% of a session's spend, so shortening what a person types is not a finding at any band. A
+**vague** prompt is expensive, and by a different mechanism entirely: it is paid in the reads,
+searches and re-reads it sets off, every one of which is surface B or C at `turns-remaining`. An audit
+that reaches for prompt length has found the cheapest thing in the session; the expensive version of
+the same observation is unmeasured here and is worth stating as such rather than banding.
 
 ---
 
