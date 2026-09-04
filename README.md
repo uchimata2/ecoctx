@@ -58,24 +58,30 @@ waiting for a reader.
 | Stage | Bytes | Paid |
 | :--- | ---: | :--- |
 | Routing description | 497 | every session, whether or not you use it |
-| `SKILL.md` body | 6,091 | when the skill activates |
-| `references/measure.md` | 24,587 | steps 1 to 5 only |
+| `SKILL.md` body | 6,819 | when the skill activates |
+| `references/measure.md` | 25,542 | steps 1 to 5 only |
 | `references/judge.md` | 31,581 | steps 6 to 11 only |
-| `references/standing.md` | 15,587 | steps 12 to 16 only |
+| `references/standing.md` | 16,000 | steps 12 to 16 only |
 
 497 bytes is the only figure that compounds. Everything below it is paid once, by a session that
 asked for it, and never two references at a time, because the body routes to exactly one. The largest
-possible single-phase cost is 6,091 plus 31,581, or 37,672 bytes, and the common case is smaller.
+possible single-phase cost is 6,819 plus 31,581, or 38,400 bytes, and the common case is smaller.
 
 The description started at 610 and lost 18.5% to duplication with every trigger kept. That trim is
 the method applied to itself, and it is the first measurement this project made.
 
 ## Status
 
-Pre-publication, and honest about why. The method has one recorded end-to-end run, on the repository
-where it was invented. Running it against a repository that is neither that one nor this one is an
-acceptance criterion rather than a nice-to-have: until that has happened, the first stranger to run
-it would also be its first real test.
+Pre-publication, and honest about why. The method now has **two** recorded runs. The second, on
+2026-09-04, was phase 1 against a subject that is neither the first run's nor this repository - the
+acceptance criterion that stood here until then, met. It is not the end of the argument: both runs
+were performed by the agent that maintains the method, so the *subject* has been a stranger and the
+operator has not.
+
+**A single session runs phase 1, and only phase 1.** Steps 12-16 grade predictions against measured
+outcomes, so they need the raised work to have been implemented first. A run's report still carries
+all sixteen rows - the second phase's five marked *not run*, with that reason. Anyone expecting
+sixteen steps in one sitting is expecting something the method refuses.
 
 Work on this repository is tracked as GitHub Issues, using taskmd's issues backend. One task per
 issue, and the issue number is the task id. Two consequences worth knowing before you open one:

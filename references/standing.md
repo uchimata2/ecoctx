@@ -82,6 +82,12 @@ habits.
 carried bands the table did not define, invented at ranking time because nothing in a four-value table
 fits a gain that is not a saving. Both are defined values now. That is what this step is for.
 
+**Read the friction log, which has been collecting since step 1** (`SKILL.md`, *What the run
+produces*). It carries the question this step cannot ask of itself: not *was the judgement right*,
+which is what the three checks above test, but *did the documents say enough to make it*. A run
+that arrives here with an empty log records that emptiness as the result it is, the same way step
+15 records a null search.
+
 **Implementing is a measurement pass, and the loop back belongs here.** Every closure in the recorded
 run produced material the audit had not seen; collecting it took a separate work item because nothing
 in the method said the loop existed.
