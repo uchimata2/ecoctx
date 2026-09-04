@@ -215,6 +215,17 @@ That boundary is worth more than the tokens it failed to save.
    settings. Two byte-for-byte identical trees can differ by tens of thousands of tokens per turn on
    this alone, and **nothing in either tree records which one you are on.**
 
+   **The same rule reaches a persistent store from the other side: record whether the harness caps
+   what it loads from that store, and where it does, inventory the cap rather than the file.** Such a
+   store is measurable in the ordinary way — its size is a fact about a file, and anyone can check it.
+   What is visible nowhere is that the harness may load only the first part of it: nothing in the
+   store records the cap, and the file's own size cannot reflect it. A project whose store has grown
+   past that bound pays the cap while its inventory reports the file, and the excess buys nothing.
+   **The cap is looked up, never measured**, so a run that cannot find it records it as
+   **undetermined** rather than as absent — *no cap* and *cap unknown* are different findings, and
+   only one of them is safe to act on. Name it by class, never by the harness, the setting or the
+   number, all three of which date within a release (step 16).
+
 2. **Inventory the read path (B)** for one representative unit of work, **chosen before the audit
    starts and named in the report.** Record what was opened, **in what format**, how much of it was
    needed, and how much was history rather than operative rule.

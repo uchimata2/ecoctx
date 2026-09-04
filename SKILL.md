@@ -43,13 +43,14 @@ kept in a reference the session may not load.
 
 ## What the run produces
 
-Two documents and one register, and the split between them is by **who can act**, never by subject.
+Two documents and two registers, and the split between them is by **who can act**, never by subject.
 
 | Audience | Where it goes |
 | :--- | :--- | 
 | **Any project** | The portable half — findings stated so they stand alone |
 | **This project** | The project's own report, ranked |
 | **Upstream** | A section of that report, written to be handed over, never implemented locally |
+| **This method** | The friction log, below — the one output addressed to the skill rather than to anyone who can act on the subject |
 
 **The report carries the full step partition as a table**, one row per step, each *ran* or
 *not run, with a stated reason*. A step in neither fails the audit, and a partition a reader has to
@@ -58,6 +59,13 @@ reconstruct is not one a later reader can check.
 **The byproduct register is the fourth output and sits outside the ranking.** Checking every file for
 one thing means seeing other things; record them, never band them, and read the register **for a
 shape** at step 12 rather than only row by row.
+
+**The friction log is the fifth output: what the run had to work out that these documents did not
+say.** One entry per occasion — the step being run, what was missing, and what was done instead.
+**Write each as it is met.** By the end of a run the friction of step 2 is a feeling rather than a
+fact, which is how the one recorded external run produced no answer to this at all. **A nil return
+is an output**: *nothing had to be worked out* is a result, and is only a result once written down.
+Step 14 reads it, and its destination is this method's own tracker rather than the subject's.
 
 **The run's own cost is what the audit consumed, and it is never the subject's load path.** Step 1
 inventories the **subject's** load path; reporting that figure under the other name is how the one
