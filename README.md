@@ -159,14 +159,14 @@ reader.
 | Stage | Bytes | Paid |
 | :--- | ---: | :--- |
 | Routing description | 497 | every session, whether or not you use it |
-| `skills/ecoctx/SKILL.md` body | 8,334 | when the skill activates |
+| `skills/ecoctx/SKILL.md` body | 8,632 | when the skill activates |
 | `skills/ecoctx/references/measure.md` | 28,283 | steps 1 to 5 only |
 | `skills/ecoctx/references/judge.md` | 32,584 | steps 6 to 11 only |
 | `skills/ecoctx/references/standing.md` | 16,571 | steps 12 to 16 only |
 
 497 bytes is the only figure that compounds. Everything below it is paid once, by a session that asked
 for it, and never two references at a time, because the body routes to exactly one. The largest possible
-single-phase cost is 8,334 plus 32,584, or 40,918 bytes, and the common case is smaller.
+single-phase cost is 8,632 plus 32,584, or 41,216 bytes, and the common case is smaller.
 
 ## What ships, and what you need
 
