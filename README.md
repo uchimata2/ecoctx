@@ -18,17 +18,11 @@ Say **"audit my context"** to start. Say **"grade the audit"** later, once the f
 An example run, graded end to end, on a subject the method did not come from. Everything charged on
 every turn, before and after:
 
-```mermaid
-xychart-beta
-    title "Tier 1, bytes"
-    x-axis ["total before", "total after", "clone before", "clone after", "user before", "user after"]
-    y-axis "bytes" 0 --> 30000
-    bar [29294, 22920, 17593, 11865, 11701, 11055]
-```
+![Tier 1 before and after: total 29,294 to 22,920, clone-inherited 17,593 to 11,865, account scope 11,701 to 11,055](assets/tier-1.svg)
 
-**6,374 bytes off every turn, 21.8%.** The split matters: 5,728 of it came out of files a clone
-inherits, 646 out of account-level files no clone gets. Quote the total as a property of the
-repository and you over-attribute by nearly half.
+**6,374 bytes off every turn, 21.8%.** The split matters: 5,728 of it, **-32.6%**, came out of files a
+clone inherits; 646, **-5.5%**, out of account-level files no clone gets. Quote the total as a property
+of the repository and you over-attribute by nearly half.
 
 **The audit's own additions to tier 1 were 580 bytes, 9.1% of what it removed.** In the method's first
 graded run that figure was 88% - a closing pass writing governance into the file it had just cleaned.
@@ -47,13 +41,7 @@ description went from 610 to 497 bytes, an 18.5% cut with every trigger kept, re
 
 Two runs are graded, on unrelated subjects:
 
-```mermaid
-xychart-beta
-    title "Graded: observations vs bands"
-    x-axis ["run 1 obs", "run 1 bands", "run 2 obs", "run 2 bands"]
-    y-axis "held, of total" 0 --> 13
-    bar [13, 2, 6, 4]
-```
+![Two graded runs: observations held 13 of 13 and 6 of 6; proposed fixes held 2 of 13 and 4 of 6](assets/grading.svg)
 
 Thirteen of thirteen observations held in the first, six of six in the second. Bands did worse: two of
 thirteen, then four of six. **Every error sat in the proposed fix, none in the observation** - twice,
@@ -122,8 +110,9 @@ single-phase cost is 8,837 plus 32,814, or 41,651 bytes.
 ## What ships, and what you need
 
 Six files are the method: `skills/ecoctx/SKILL.md`, the three references, and `tools/findings.py` with
-`tools/selftest.py`. Two more are packaging, in `.claude-plugin/`. The four checkers in `tools/` check
-this repository and are not part of an install.
+`tools/selftest.py`. Two more are packaging, in `.claude-plugin/`. The five checkers in `tools/` check
+this repository and are not part of an install - including one that fails when a chart in `assets/`
+draws a figure this README does not state.
 
 - **Python 3**, standard library only, no network. `python tools/selftest.py` passes 19 of 19 on
   **3.12.10** and **3.14.4**. The floor below them is **undetermined** - unmeasured, not absent. On any
@@ -135,8 +124,8 @@ this repository and are not part of an install.
 - **An agent that can report its own context.** Step 1 asks the agent what it loaded, never reads the
   screen. A harness that cannot answer leaves step 1 nothing to observe, and the audit says so.
 
-Version `rubric 2, revision 0`, stated in `skills/ecoctx/SKILL.md`. The rubric number says whether a
-phase 1 and the phase 2 grading it ran under the same rubric. `plugin.json` renders it `2.0.0` because
+Version `rubric 2, revision 1`, stated in `skills/ecoctx/SKILL.md`. The rubric number says whether a
+phase 1 and the phase 2 grading it ran under the same rubric. `plugin.json` renders it `2.1.0` because
 the platform requires semver.
 
 ## Status

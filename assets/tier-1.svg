@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" width="760" height="300" role="img" aria-label="Tier 1 bytes before and after, three scopes">
+  <style>
+    .card { fill: #fbfbfa; }
+    .ttl  { font: 600 15px ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif; fill: #1c1b19; }
+    .sub  { font: 400 12px ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif; fill: #6b6862; }
+    .grp  { font: 600 12px ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif; fill: #3a3833; }
+    .val  { font: 600 12px ui-monospace, "SF Mono", Menlo, Consolas, monospace; fill: #1c1b19; }
+    .cut  { font: 600 12px ui-monospace, "SF Mono", Menlo, Consolas, monospace; fill: #9a3b1f; }
+    .base { stroke: #ddd9d1; stroke-width: 1; }
+    .b4   { fill: #cfc9bd; }
+    .aft  { fill: #c4622d; }
+  </style>
+
+  <rect class="card" x="0" y="0" width="760" height="300" rx="6"/>
+  <text class="ttl" x="28" y="34">Tier 1, the bytes charged on every turn</text>
+  <text class="sub" x="28" y="54">One graded run. Before, and after its six findings were fixed.</text>
+
+  <!-- baseline at y=252, zero. Scale: 29294 bytes = 150px -->
+  <line class="base" x1="28" y1="252" x2="732" y2="252"/>
+
+  <!-- group 1: total 29294 -> 22920 (150px -> 117px) -->
+  <rect class="b4"  x="46"  y="102" width="52" height="150"/>
+  <rect class="aft" x="106" y="135" width="52" height="117"/>
+  <text class="val" x="72"  y="94"  text-anchor="middle">29,294</text>
+  <text class="val" x="132" y="127" text-anchor="middle">22,920</text>
+  <text class="grp" x="102" y="272" text-anchor="middle">Total</text>
+  <text class="cut" x="102" y="290" text-anchor="middle">-21.8%</text>
+
+  <!-- group 2: clone 17593 -> 11865 (90px -> 61px) -->
+  <rect class="b4"  x="286" y="162" width="52" height="90"/>
+  <rect class="aft" x="346" y="191" width="52" height="61"/>
+  <text class="val" x="312" y="154" text-anchor="middle">17,593</text>
+  <text class="val" x="372" y="183" text-anchor="middle">11,865</text>
+  <text class="grp" x="342" y="272" text-anchor="middle">What a clone inherits</text>
+  <text class="cut" x="342" y="290" text-anchor="middle">-32.6%</text>
+
+  <!-- group 3: user 11701 -> 11055 (60px -> 57px) -->
+  <rect class="b4"  x="526" y="192" width="52" height="60"/>
+  <rect class="aft" x="586" y="195" width="52" height="57"/>
+  <text class="val" x="552" y="184" text-anchor="middle">11,701</text>
+  <text class="val" x="612" y="187" text-anchor="middle">11,055</text>
+  <text class="grp" x="582" y="272" text-anchor="middle">Account scope, no clone gets it</text>
+  <text class="cut" x="582" y="290" text-anchor="middle">-5.5%</text>
+
+  <rect class="b4"  x="640" y="26" width="11" height="11"/>
+  <text class="sub" x="657" y="36">before</text>
+  <rect class="aft" x="700" y="26" width="11" height="11"/>
+  <text class="sub" x="717" y="36">after</text>
+</svg>
