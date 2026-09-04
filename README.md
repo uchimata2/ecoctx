@@ -72,11 +72,21 @@ the method applied to itself, and it is the first measurement this project made.
 
 ## Status
 
-Pre-publication, and honest about why. The method now has **two** recorded runs. The second, on
-2026-09-04, was phase 1 against a subject that is neither the first run's nor this repository - the
-acceptance criterion that stood here until then, met. It is not the end of the argument: both runs
-were performed by the agent that maintains the method, so the *subject* has been a stranger and the
-operator has not.
+Pre-publication, and honest about why. Three runs are recorded, and they are not the same thing:
+
+| When | Subject | Steps | What it produced |
+| :--- | :--- | :--- | :--- |
+| 2026-08 | the repository where the method was invented | **1-16** | The graded table above - thirteen findings, eleven bands missed |
+| 2026-08-15 | a second repository | 1-11 | Two documents, and no answer to what the skill should have said |
+| 2026-09-04 | a third, unrelated to either | 1-11 | Six findings, and four entries saying what the method failed to say |
+
+**One run has been graded end to end.** The other two are phase 1, which is all a single session can
+do. Running against a repository that is neither the first subject's nor this one was an acceptance
+criterion here until 2026-09-04; it is met.
+
+What is *not* met, and is the reason this still says pre-publication: **every run so far was performed
+by the agent that maintains the method.** The subject has been a stranger three times over; the
+operator never has.
 
 **A single session runs phase 1, and only phase 1.** Steps 12-16 grade predictions against measured
 outcomes, so they need the raised work to have been implemented first. A run's report still carries
