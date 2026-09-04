@@ -3,6 +3,11 @@
 **Load this alone, and only after the raised work is implemented.** At ranking there is nothing to
 measure against, and a phase 2 run from memory produces the audit's own opinion of itself.
 
+**The gate is implementation. Elapsed time is not part of it.** Where this method says the phases are
+months apart it is describing the usual case, not setting a bound: a project that implements quickly
+opens phase 2 quickly, and is right to proceed. What that costs is step 15, which needs its second null
+shape when the delta window is short.
+
 **An audit is a measurement taken at one moment, and a cleaned repository resumes growing at the rate
 that produced the findings.** Phase 1 ends with work raised and, later, done. Nothing in it makes the
 *next* year cheaper: the rules that would prevent regrowth are still in the auditor's head, the bands
@@ -26,6 +31,12 @@ moved and qualify the grading — never refuse it, and never re-classify.** Re-b
 under a later rubric manufactures a band nobody assigned, which is a derived value doing a measured
 one's job. Where the run predates rubric 1 it carries no version at all, and the comparison is
 **unversioned**: say so, rather than reading a match into a blank.
+
+**Two blanks look identical and are not.** Rubric 1 was written on **2026-09-04** (`SKILL.md`). A report
+dated **before** that carries no version because none existed — the exemption above. A report dated
+**after** it carries none because the run omitted a line the method requires, which is a **friction
+entry**, not an exemption. Say which one you found. A requirement whose absence is indistinguishable
+from a defined exemption is not a requirement.
 
 **Not a re-read of the findings.** For each one implemented, the band it carried set against what it
 actually bought, **with the original kept and the correction marked.**
@@ -113,10 +124,23 @@ declared per axis and the empty rounds listed.
 **Bound it to the delta.** This is *what is new since the audit's step 5*, not a second survey. **A
 closing phase that re-runs step 5 in full is another audit wearing a different number.**
 
-**A null result is an output.** In the recorded re-run, re-running the research changed no finding: ten
-of fourteen new techniques were addressed to the harness or the API and the one real local candidate
-was unmeasured. That had to be written down, because a work item was blocked on the answer and *no new
-finding* is only an answer once it is recorded as one.
+**A null result is an output, and it has two shapes.**
+
+| Shape | Written when | What the row carries |
+| :--- | :--- | :--- |
+| **searched, nothing new** | the axes were run and changed no finding | the queries, the sources, and what the survey found that did not matter |
+| **not surveyed, window too short** | the delta window cannot hold a delta a survey would find | **the window**, and **what bounded it** — the date of step 5, the date of this phase |
+
+In the recorded re-run, re-running the research changed no finding: ten of fourteen new techniques were
+addressed to the harness or the API and the one real local candidate was unmeasured. That had to be
+written down, because a work item was blocked on the answer and *no new finding* is only an answer once
+it is recorded as one.
+
+**The second shape exists because the gate is implementation, not elapsed time** — see the head of this
+file. A project that implements in two sessions opens phase 2 a day after step 5, and issuing queries
+across a one-day window to produce a record of having issued them is the theatre the *bound it to the
+delta* rule already refuses. **An unsurveyed step 15 is not a skipped one**: it is this shape, written
+down, and a run that leaves the step blank has skipped it.
 
 ---
 

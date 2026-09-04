@@ -20,7 +20,7 @@ Never load two. Each names its own steps and nothing outside them.
 | Coming back after the raised work is done | `references/standing.md` | Steps 12–16 — grade every band, price the remedies, fix the method, write policy |
 
 If the user has not said which, ask. *Audit my context* means step 1; *grade the audit* means step 12.
-They are months apart and the second cannot be faked from the first.
+The second cannot be faked from the first: its gate is that the raised work is implemented, which is usually months and is never a clock.
 
 ## The four things this skill refuses to do
 
@@ -76,7 +76,7 @@ substitute an artifact sum: unlabelled, it reads exactly like a measurement.
 
 ## Version, and what it means for a phase 2
 
-**rubric 1, revision 1.** Written as words: two dot-separated integers would be read as SemVer, whose
+**rubric 2, revision 0**, and rubric 1 was written on **2026-09-04**. Written as words: two dot-separated integers would be read as SemVer, whose
 question is not this one — nothing here breaks at run time, and what can break is a comparison taken
 months apart. `.claude-plugin/plugin.json` carries the same version as `1.1.0`, because the platform
 refuses anything that is not semver — `claude plugin tag` rejects a non-semver version, and dependency
@@ -94,7 +94,8 @@ moves the number, and a number that moves on everything discriminates nothing.
 and resets to 0 when the rubric moves. Changes landing together bump once, to the higher class.
 
 **Every run's report records the version it ran under**, beside the step partition. Step 12 reads it
-back (`standing.md`).
+back (`standing.md`), and tells a report that omitted the line from one that predates rubric 1 by the
+date above.
 
 ## Two rules that decide most disagreements
 
