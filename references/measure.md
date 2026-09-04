@@ -286,9 +286,25 @@ adequate.
 | **B** | **named tools, by name** | searching for *ideas* never reaches a technique whose name is a product. Six of fourteen new techniques in the one recorded re-run came only from here, and so did its single largest correction |
 | **C** | **the harness's own documented mechanisms** | it found three techniques and had never been treated as a source at all. Its published model of what a session loads is also the only external check on step 1's enumeration: run one against the other, and take the **taxonomy** rather than the figures, which are usually illustrative and sized to a window that has since moved |
 
-**Declare saturation per axis, and list the empty rounds.** An axis stops when a full round adds
-nothing, **and the round that added nothing is written down.** Without that row a reader cannot judge
-whether the axis stopped early, and the record documents an arbitrary stop.
+**Declare per axis how it stopped. There are two shapes, and an axis whose record fits neither has
+not been recorded.**
+
+| Shape | Written when | What the row carries |
+| :--- | :--- | :--- |
+| **saturated** | a full round added nothing | the empty round itself, written down |
+| **stopped, not saturated** | the axis was still producing when the run ran out | what the last round **still added**, and **what stopped it** — a session budget, a time box, a decision |
+
+Without the first row a reader cannot judge whether a saturated axis stopped early, and the record
+documents an arbitrary stop. Without the second, a run that stopped early has only the saturated shape
+to write in, and must either claim a saturation that did not happen or invent a form this document does
+not describe. **The second shape is the ordinary case**, not the exception: a run whose budget expires
+while every axis is still producing is the common outcome, and it was the shape missing for as long as
+only saturation had one.
+
+**The shape travels with the catalogue, at its top rather than in a footnote.** Step 7's partition
+inherits whatever completeness this record has and has to cite it (`judge.md`); a qualification a
+reader meets four steps earlier, or at the foot of a page, is one that arrives after the sum has been
+read as coverage.
 
 **Expect an order of magnitude, not a handful.** The first pass of the one recorded run produced
 nineteen entries and read as complete; under the coverage rule the catalogue reached **35**. A

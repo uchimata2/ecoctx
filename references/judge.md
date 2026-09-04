@@ -63,6 +63,12 @@ summed correctly, and read as complete, over **nineteen entries of a catalogue t
 35** — right about a bit over half. Step 5's search record is the only guard, and it is weaker than
 the partition: a search record can be read and judged, but nothing can prove a survey complete.
 
+**So the partition cites the shape it inherited** — per axis, `saturated` or `stopped, not saturated`,
+in step 5's terms — stated beside the sum rather than left four steps upstream. The sum is what a
+reader trusts, so the qualification has to arrive with it; a partition over a catalogue whose every
+axis stopped early is a different object from one over a saturated survey, and nothing in the
+arithmetic can tell them apart.
+
 ---
 
 ## 8. Estimate gain and effort
