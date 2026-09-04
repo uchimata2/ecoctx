@@ -84,9 +84,32 @@ Pre-publication, and honest about why. Three runs are recorded, and they are not
 do. Running against a repository that is neither the first subject's nor this one was an acceptance
 criterion here until 2026-09-04; it is met.
 
-What is *not* met, and is the reason this still says pre-publication: **every run so far was performed
-by the agent that maintains the method.** The subject has been a stranger three times over; the
-operator never has.
+### The publication gate
+
+What *ready* means here is written down rather than assembled each time somebody asks. Three rows, and
+the gate is passed when all three of these issues are closed:
+
+| Row | Tracked as |
+| :--- | :--- |
+| The method's four known silences are closed | #40, #41, #42, #43 |
+| What ships is stated, and what a consumer must already have | #49 |
+| A version number is defined, and says whether the rubric moved | #50 |
+
+**The state is deliberately not repeated here.** *Open* or *met* in this table would be a second copy of
+a fact the tracker already holds, and it would be wrong on the day a row closes - which is the failure
+this project keeps finding in its own prose. Open the issues; that is what checkable means.
+
+**Two candidates were considered and are not gate rows, because no work in this repository can reach
+them.** A row its owner cannot close does not gate a release, it cancels one. Both ship as disclosed
+limits instead:
+
+- **No stranger has operated the method.** The subject has been a stranger three times over; the
+  operator never has. Gating on it is circular - publication is how a stranger is reached - so it is
+  disclosed rather than waited for, and this sentence is the disclosure.
+- **Phase 2 has run once, on the repository where the method was invented.** An external one needs an
+  external phase 1's raised work implemented first, which is months away by construction.
+
+The gate itself, and the reason behind each verdict, is #47.
 
 **A single session runs phase 1, and only phase 1.** Steps 12-16 grade predictions against measured
 outcomes, so they need the raised work to have been implemented first. A run's report still carries
