@@ -26,7 +26,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-BODY = ROOT / "SKILL.md"
+SKILL_DIR = ROOT / "skills" / "ecoctx"   # a plugin's skills live under skills/<name>/
+BODY = SKILL_DIR / "SKILL.md"
 
 # The body spells the total in words and gives the ranges in digits. Both are claims about the
 # same partition, so both are checked; the map covers the range a method of steps can plausibly
@@ -88,7 +89,7 @@ def main() -> int:
 
     # Each reference's actual steps, against the range it was given.
     for name, lo, hi in rows:
-        path = ROOT / "references" / name
+        path = SKILL_DIR / "references" / name
         if not path.exists():
             problems.append(f"{name} is routed to by SKILL.md and does not exist")
             continue
