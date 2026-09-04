@@ -52,8 +52,16 @@ never depended on a binding existing.
 
 The three named in `reconcile_targets`, and each for a different reason:
 
-- **README.md** carries measured byte counts and an installed-cost table. Any edit to `SKILL.md` or
-  a reference changes numbers that the README states as fact and nothing recomputes.
+- **README.md** carries measured byte counts and an installed-cost table. **The figures are no
+  longer among them**: #24 landed `tools/check_readme.py` on 2026-09-04, which re-measures all
+  five rows and the arithmetic identity on every run of `check_all.py`, in bytes on LF. It caught
+  #3's edit to `SKILL.md` in the same batch, before a reader did. What is still hand-kept is the
+  README's **prose** — the recorded run's counts, the claims about what the method cannot do —
+  and nothing measures those.
+
+  *The original entry read: "Any edit to `SKILL.md` or a reference changes numbers that the README
+  states as fact and nothing recomputes." It was right for as long as it was true, and it is kept
+  here because it is the entry that produced the issue that retired it.*
 - **.taskmd/config.md** enumerates the vocabularies, and every value is a GitHub label. Adding a
   value without creating its label fails the next write that uses it.
 - **GitHub Issues** renders `state` from the `status:` label. A status changed one way and not the
