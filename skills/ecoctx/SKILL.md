@@ -76,11 +76,18 @@ substitute an artifact sum: unlabelled, it reads exactly like a measurement.
 
 ## Version, and what it means for a phase 2
 
-**rubric 2, revision 2**, and rubric 1 was written on **2026-09-04**. Written as words: two dot-separated integers would be read as SemVer, whose
+**rubric 2, revision 3**, and rubric 1 was written on **2026-09-04**. Written as words: two dot-separated integers would be read as SemVer, whose
 question is not this one — nothing here breaks at run time, and what can break is a comparison taken
-months apart. `.claude-plugin/plugin.json` carries the same version as `1.1.0`, because the platform
-refuses anything that is not semver — `claude plugin tag` rejects a non-semver version, and dependency
-resolution then ignores the tag. That manifest field is a **rendering**; this line is the version's home.
+months apart. `.claude-plugin/plugin.json` carries the same version rendered as semver — rubric as the
+major, revision as the minor, patch always zero — because the platform refuses anything else: `claude
+plugin tag` rejects a non-semver version, and dependency resolution then ignores the tag. That manifest
+field is a **rendering**; this line is the version's home, and naming the mapping rather than today's
+value is what keeps it one.
+
+**This line describes the tip of `master`, not the last release.** Every merge that changes a shipping
+file moves it, and what a release shipped is the value this line held when its tag was cut, which is
+what the tag records. So `master` standing ahead of the newest tag is the ordinary state, never a
+stale number.
 
 **The rubric number's only job is to say whether a run was graded under the rubric it ran under.** *The
 rubric* is what a run's outputs cite — the closed value sets, the finding record's fields, the step
