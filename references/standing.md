@@ -20,6 +20,13 @@ pass more often than by anything in phase 1. **Step 16 exists mostly to prevent 
 
 ## 12. Close the loop on every finding: predicted against measured
 
+**Check the version before the first row.** The report records the version the run was performed under
+(`SKILL.md`); compare it with the one in front of you. Where the rubric numbers differ, **name what
+moved and qualify the grading — never refuse it, and never re-classify.** Re-banding a phase 1 finding
+under a later rubric manufactures a band nobody assigned, which is a derived value doing a measured
+one's job. Where the run predates rubric 1 it carries no version at all, and the comparison is
+**unversioned**: say so, rather than reading a match into a blank.
+
 **Not a re-read of the findings.** For each one implemented, the band it carried set against what it
 actually bought, **with the original kept and the correction marked.**
 

@@ -58,14 +58,14 @@ waiting for a reader.
 | Stage | Bytes | Paid |
 | :--- | ---: | :--- |
 | Routing description | 497 | every session, whether or not you use it |
-| `SKILL.md` body | 7,044 | when the skill activates |
+| `SKILL.md` body | 8,334 | when the skill activates |
 | `references/measure.md` | 28,283 | steps 1 to 5 only |
 | `references/judge.md` | 32,584 | steps 6 to 11 only |
-| `references/standing.md` | 16,000 | steps 12 to 16 only |
+| `references/standing.md` | 16,571 | steps 12 to 16 only |
 
 497 bytes is the only figure that compounds. Everything below it is paid once, by a session that
 asked for it, and never two references at a time, because the body routes to exactly one. The largest
-possible single-phase cost is 7,044 plus 32,584, or 39,628 bytes, and the common case is smaller.
+possible single-phase cost is 8,334 plus 32,584, or 40,918 bytes, and the common case is smaller.
 
 The description started at 610 and lost 18.5% to duplication with every trigger kept. That trim is
 the method applied to itself, and it is the first measurement this project made.
@@ -90,6 +90,9 @@ Six files are the method. The rest of the tree is this repository checking itsel
 Those three are worth reading as worked examples - `check_all.py` is this method's partition-with-no-
 fourth-outcome applied to a gate rather than to a report - but there is nothing in them for a consumer
 to run.
+
+**The version is stated in `SKILL.md`**, with what its two numbers mean. One of them exists only to say
+whether a phase 1 and the phase 2 grading it, taken months apart, were run under the same rubric.
 
 **What you need.**
 
