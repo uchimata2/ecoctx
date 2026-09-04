@@ -95,10 +95,12 @@ is measured without printing it. The script is throwaway and belongs outside the
 markdown, costs no dependency, and is labelled an estimate. Never use it to separate two findings a
 byte count does not already separate.
 
-**`tools/findings.py` answers *which finding is which task, and what state is it in*** without reading
-the audit, and fails in both directions. **`tools/check_all.py`** discovers every checker and ends
-with a partition: each **ran**, **was skipped with a stated reason**, or **failed**. A checker in none
-of the three fails the run.
+**`tools/findings.py` ships with the method** and answers *which finding is which task, and what state
+is it in* without reading the audit, failing in both directions. The other programs beside it check the
+skill's own repository and are not part of an install; `README.md` says which is which.
+**`tools/check_all.py` is that repository's gate**, and it is the partition this method asks for
+everywhere else, applied to checkers instead of steps: each **ran**, **was skipped with a stated
+reason**, or **failed**, and one in none of the three fails the run.
 
 ## What this method cannot see
 

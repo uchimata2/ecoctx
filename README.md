@@ -58,17 +58,56 @@ waiting for a reader.
 | Stage | Bytes | Paid |
 | :--- | ---: | :--- |
 | Routing description | 497 | every session, whether or not you use it |
-| `SKILL.md` body | 6,819 | when the skill activates |
+| `SKILL.md` body | 7,044 | when the skill activates |
 | `references/measure.md` | 28,283 | steps 1 to 5 only |
 | `references/judge.md` | 32,584 | steps 6 to 11 only |
 | `references/standing.md` | 16,000 | steps 12 to 16 only |
 
 497 bytes is the only figure that compounds. Everything below it is paid once, by a session that
 asked for it, and never two references at a time, because the body routes to exactly one. The largest
-possible single-phase cost is 6,819 plus 32,584, or 39,403 bytes, and the common case is smaller.
+possible single-phase cost is 7,044 plus 32,584, or 39,628 bytes, and the common case is smaller.
 
 The description started at 610 and lost 18.5% to duplication with every trigger kept. That trim is
 the method applied to itself, and it is the first measurement this project made.
+
+## What ships, and what you need
+
+Six files are the method. The rest of the tree is this repository checking itself.
+
+| Ships | What it is |
+| :--- | :--- |
+| `SKILL.md` | the body - the routing table, the four refusals, the two rules that decide most disagreements |
+| `references/measure.md`, `references/judge.md`, `references/standing.md` | the steps, one file per stretch of the run, and never more than one loaded |
+| `tools/findings.py` | answers *which finding is which task, and what state is it in*. Tracker-agnostic by configuration, reading `.ecoctx.json` at the root of the repository being audited |
+| `tools/selftest.py` | exercises `findings.py` against fixtures it builds itself. It ships because of the Python floor below |
+
+| Stays here | Why |
+| :--- | :--- |
+| `tools/check_readme.py` | re-measures the figures *this* README publishes |
+| `tools/check_steps.py` | asserts *this* body's step partition against *these* references |
+| `tools/check_all.py` | runs this repository's own checkers, from a manifest that names them |
+
+Those three are worth reading as worked examples - `check_all.py` is this method's partition-with-no-
+fourth-outcome applied to a gate rather than to a report - but there is nothing in them for a consumer
+to run.
+
+**What you need.**
+
+- **Python 3**, for the two tools that ship. Standard library only, no third-party packages, no network.
+  `python tools/selftest.py` passes 19 of 19 on **3.12.10** and on **3.14.4**, which are the two
+  interpreters this project has run it on. **The floor below them is undetermined** - unmeasured, not
+  absent. If you are on something else, that command is how you find out, and it is why the self-test is
+  in the shipping set rather than kept here.
+- **Task records `findings.py` can read**: text files opening with a `key: value` front-matter block,
+  one key naming a finding. Field names, the glob and the report paths are configurable; the shape is
+  not. If your tracker is not files - this project's is not, it is GitHub Issues - that one tool does not
+  apply, and no step of the method depends on it.
+- **A way to measure without reading.** File sizes come off the filesystem, and command output is
+  captured to a file whose length is measured without printing it. Any language will do; the method
+  names none, and the script is throwaway.
+- **An agent that can report its own context.** Step 1 establishes what loads by asking the agent what
+  it has loaded, never by reading the screen. A harness that cannot answer leaves that step with nothing
+  to observe, and the audit says so rather than reporting what was visible.
 
 ## Status
 
