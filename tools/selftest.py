@@ -44,6 +44,15 @@ REPORT = """# Audit
 # there were none.
 REPORT_WITH_PROSE = "Finding CE-01 concerns the load path, and CE-02 the read path.\n\n" + REPORT
 
+# CE-03 is absent. The recorded run lost E-06 exactly this way and nobody noticed for months.
+REPORT_WITH_GAP = REPORT.replace("| **CE-03** |", "| **CE-04** |")
+
+# The same three ids, split across the two output documents the method declares. Neither half
+# is contiguous on its own, which is the condition a single-document check reads as clean.
+REPORT_SPLIT_A = REPORT.replace("| 2 | **CE-02** | M |\n", "")
+REPORT_SPLIT_B = ("# Portable\n\n| # | id | Gain |\n"
+                  "| :-- | :-- | :-- |\n| 2 | **CE-02** | M |\n")
+
 
 def task(status: str, finding: str) -> str:
     return f"---\nstatus: {status}\nfinding: {finding}\n---\n\n# fixture\n"
@@ -57,9 +66,14 @@ def run(root: Path) -> tuple[int, str]:
     return proc.returncode, proc.stdout + proc.stderr
 
 
-def build(root: Path, report: str, tasks: dict[str, tuple[str, str]]) -> None:
+def build(root: Path, report: str, tasks: dict[str, tuple[str, str]],
+          second: str | None = None) -> None:
     (root / "tasks").mkdir(parents=True, exist_ok=True)
     (root / "AUDIT.md").write_text(report, encoding="utf-8")
+    if second is not None:
+        (root / "PORTABLE.md").write_text(second, encoding="utf-8")
+        (root / ".ecoctx.json").write_text(
+            '{"report": ["AUDIT.md", "PORTABLE.md"]}', encoding="utf-8")
     for name, (status, finding) in tasks.items():
         (root / "tasks" / f"{name}.md").write_text(task(status, finding), encoding="utf-8")
 
@@ -67,7 +81,14 @@ def build(root: Path, report: str, tasks: dict[str, tuple[str, str]]) -> None:
 def main() -> int:
     failures: list[str] = []
 
+    ran = 0
+
     def check(label: str, ok: bool, detail: str = "") -> None:
+        # Counted here, in the one function every assertion passes through. A total written
+        # down anywhere else is a second copy that goes stale the next time a fixture is
+        # added - which is how this line came to claim ten checks while running eleven.
+        nonlocal ran
+        ran += 1
         print(f"  {'ok  ' if ok else 'FAIL'}  {label}")
         if not ok:
             failures.append(f"{label}{': ' + detail if detail else ''}")
@@ -104,13 +125,42 @@ def main() -> int:
         code, out = run(prose)
         check("a prose mention before the ranked row is not read as the row", code == 0, out)
 
+        gap = base / "gap"
+        build(gap, REPORT_WITH_GAP, {"T-1": ("done", "CE-01")})
+        code, out = run(gap)
+        check("a hole in the numbering fails", code == 1, out)
+        check("and names the id that is missing", "CE-03: a gap in the numbering" in out, out)
+
+        split = base / "split"
+        build(split, REPORT_SPLIT_A, {"T-1": ("done", "CE-01")}, second=REPORT_SPLIT_B)
+        code, out = run(split)
+        check("contiguous only across both documents passes", code == 0, out)
+        check("and does not warn about a single document",
+              "one document is configured" not in out, out)
+
+        code, out = run(agree)
+        check("one configured document says the other's gaps are unseen",
+              "one document is configured" in out, out)
+
         empty = base / "unstated"
         build(empty, REPORT, {})
         code, out = run(empty)
         check("a finding with no task is listed, not an error", code == 0, out)
         check("and is marked as having none", "(no task)" in out, out)
+        check("and says the glob matched nothing, so 0 is not read as a comparison",
+              "matched no files" in out, out)
 
-    print(f"\nselftest: {6 + 4 - len(failures)} of 10 checks passed")
+        # The discrimination this note exists for. Without this case, printing the note
+        # unconditionally would satisfy the check above and still be wrong.
+        unraised = base / "unraised"
+        build(unraised, REPORT, {})
+        (unraised / "tasks" / "T-7.md").write_text(
+            "---\nstatus: in_progress\n---\n\n# raises nothing\n", encoding="utf-8")
+        code, out = run(unraised)
+        check("a populated task tree that raises nothing is clean", code == 0, out)
+        check("and gets no glob note", "matched no files" not in out, out)
+
+    print(f"\nselftest: {ran - len(failures)} of {ran} checks passed")
     for f in failures:
         print(f"  FAILED  {f.splitlines()[0]}")
     return 1 if failures else 0
