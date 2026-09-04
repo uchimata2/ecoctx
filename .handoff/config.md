@@ -12,7 +12,7 @@ any edit.
 - `tracker_status_done`: done
 - `tracker_workflow`: the taskmd method, `plugin/skills/taskmd/docs/METHOD.md` in the taskmd repository
 - `project_docs`: README.md, skills/ecoctx/SKILL.md, skills/ecoctx/references/
-- `reconcile_targets`: README.md, .taskmd/config.md, GitHub Issues on uchimata2/ecoctx
+- `reconcile_targets`: README.md, .taskmd/config.md, assets/, GitHub Issues on uchimata2/ecoctx
 
 `memory` is not a project key. Claude Code supplies `memory: claude` from its own stub.
 
@@ -56,8 +56,12 @@ The three named in `reconcile_targets`, and each for a different reason:
   longer among them**: #24 landed `tools/check_readme.py` on 2026-09-04, which re-measures all
   five rows and the arithmetic identity on every run of `check_all.py`, in bytes on LF. It caught
   #3's edit to `SKILL.md` in the same batch, before a reader did. What is still hand-kept is the
-  README's **prose** — the recorded run's counts, the claims about what the method cannot do —
-  and nothing measures those. **This fired on 2026-09-04**, one batch after it was written: the
+  README's **prose** — the recorded run's counts, the claims about what the method cannot do.
+  **Two more instruments landed on 2026-09-05**, and neither closes that: `check_charts.py` fails
+  when a chart in `assets/` draws a figure the prose does not state, and `check_prose.py` fails on
+  an em dash, a curly quote or an inflated word. Both cover mechanics. **What a sentence claims is
+  still hand-kept**, and every miss recorded here was a claim rather than a character.
+  **This fired on 2026-09-04**, one batch after it was written: the
   *Status* section still said the method had one recorded run, on the repository where it was
   invented. The batch that made both halves false was two commits from shipping it, and
   `check_all.py` stayed green the whole way, because every figure it checks was still correct.
