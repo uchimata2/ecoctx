@@ -74,6 +74,26 @@ is a **disclosure** — never screened, banded, ranked or raised — stated with
 produced it and what that instrument excludes. Where the harness offers none, say so rather than
 substitute an artifact sum: unlabelled, it reads exactly like a measurement.
 
+## Version, and what it means for a phase 2
+
+**rubric 1, revision 0.** Written as words: two dot-separated integers would be read as SemVer, whose
+question is not this one — nothing here breaks at run time, and what can break is a comparison taken
+months apart.
+
+**The rubric number's only job is to say whether a run was graded under the rubric it ran under.** *The
+rubric* is what a run's outputs cite — the closed value sets, the finding record's fields, the step
+partition — and the number moves when **what a run is required to record** changes: a value added to,
+removed from or redefined in a closed set; a field added to or removed from the finding record; a step
+added, removed or moved between references; a rule that changes what gets written down. **Stating an
+unchanged requirement more findably is not a rubric change.** Without that clause every clarification
+moves the number, and a number that moves on everything discriminates nothing.
+
+**The revision number is everything else** — prose, rationale, worked examples, the README, the tools —
+and resets to 0 when the rubric moves. Changes landing together bump once, to the higher class.
+
+**Every run's report records the version it ran under**, beside the step partition. Step 12 reads it
+back (`standing.md`).
+
 ## Two rules that decide most disagreements
 
 **Only tier 1 gets a budget, and express it as a relation rather than a constant.** Tier 1 is what the
