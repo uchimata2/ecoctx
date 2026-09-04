@@ -20,14 +20,13 @@ every turn, before and after:
 
 ![Tier 1 before and after: total 29,294 to 22,920, clone-inherited 17,593 to 11,865, account scope 11,701 to 11,055](assets/tier-1.svg)
 
-**6,374 bytes off every turn, 21.8%.** The split matters: 5,728 of it, **-32.6%**, came out of files a
-clone inherits; 646, **-5.5%**, out of account-level files no clone gets. Quote the total as a property
+**6,374 bytes off every turn, 21.8%.** Of that, 5,728 came out of files a clone inherits, **-32.6%**,
+and 646 out of account-level files no clone gets, **-5.5%**. Quote the total as a property
 of the repository and you over-attribute by nearly half.
 
 **The audit's own additions to tier 1 were 580 bytes, 9.1% of what it removed.** In the method's first
 graded run that figure was 88% - a closing pass writing governance into the file it had just cleaned.
-The difference was one habit: every rule went into the script or the file it governs, never into the
-always-loaded one.
+Here every rule went into the script or the file it governs, never into the always-loaded one.
 
 Some of what it recommends still makes the repository bigger. That run added a 6,250-byte document, a
 205,646-byte asset and 58 lines of checks - none on a load path. If you check the total and expect it
@@ -44,8 +43,8 @@ Two runs are graded, on unrelated subjects:
 ![Two graded runs: observations held 13 of 13 and 6 of 6; proposed fixes held 2 of 13 and 4 of 6](assets/grading.svg)
 
 Thirteen of thirteen observations held in the first, six of six in the second. Bands did worse: two of
-thirteen, then four of six. **Every error sat in the proposed fix, none in the observation** - twice,
-independently.
+thirteen, then four of six. **Every error sat in the proposed fix, none in the observation**, on both
+runs.
 
 So the method marks a proposed change as a hypothesis when you write it, and tells you to re-measure
 before carrying it out. A ranking obeyed instead would have deleted two tools' payloads.
