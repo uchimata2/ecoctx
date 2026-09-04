@@ -148,4 +148,16 @@ gh issue edit <n> --remove-label "status:planned" --add-label "status:done" && g
 ```
 
 Never the second without the first. Closing an issue in the web interface changes the rendering
-while the fact stays put, and no view will flag it.
+while the fact stays put, and nothing GitHub shows you will flag it.
+
+**A pull request body's `Closes #N` performs that same single write, without anyone choosing to.** On
+merge GitHub closes the issue and never touches the label — minutes after the last time anyone looked
+at the tracker, on a different screen. It does not read like the act the paragraph above warns about:
+it reads like documentation of what the pull request does, and it is ordinary practice everywhere else.
+So either leave the trailer out, or make the label write first.
+
+**`tools/check_tracker.py` is what flags it**, on every run of `tools/check_all.py`, in both
+directions: an issue closed while its status is an open one, and an issue open while its status is
+`done` or `cancelled`. It reads the two vocabularies out of this file rather than carrying a copy, so a
+value added above reaches the check without a second edit. Until 2026-09-04 the sentence above ended
+*and no view will flag it*, which was true for as long as it was true — and is why #45 exists.

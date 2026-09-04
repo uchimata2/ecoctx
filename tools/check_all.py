@@ -11,6 +11,13 @@ when they do this exits non-zero — a new tool is `UNDECLARED` until it is adde
 declared tool that has been deleted is `MISSING`. Neither is a judgement about the tool; both
 say the manifest and the tree stopped agreeing.
 
+**A skip is declared two ways, because two kinds of skip exist.** The manifest states the ones
+known in advance — *no audit report lives here* is true whatever the environment. A tool that
+needs a network, credentials or anything else it can only discover by trying declares its own,
+at run time, by **exiting 2 with the reason on its first line of output**. Without that, such a
+tool must either report itself as having run, which is the failure this file exists to catch
+wearing new clothes, or fail a gate for an absence that is nobody's defect.
+
     python tools/check_all.py
 
 Standard library only. Runs from any working directory.
@@ -24,6 +31,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
+# A tool exiting this declares its own skip, with the reason on its first line of output.
+SELF_SKIP = 2
+
 # name -> (argv after the interpreter, or None) and a reason when it is not run.
 # A tool that cannot run here states why, in one sentence, checkable by a reader.
 MANIFEST: dict[str, tuple[list[str] | None, str]] = {
@@ -33,6 +43,10 @@ MANIFEST: dict[str, tuple[list[str] | None, str]] = {
     ),
     "check_steps.py": (
         ["tools/check_steps.py"],
+        "",
+    ),
+    "check_tracker.py": (
+        ["tools/check_tracker.py"],
         "",
     ),
     "selftest.py": (
@@ -73,11 +87,13 @@ def main() -> int:
         proc = subprocess.run(
             [sys.executable, *argv], cwd=ROOT, capture_output=True, text=True
         )
+        lines = (proc.stdout + proc.stderr).strip().splitlines()
         if proc.returncode == 0:
             ran.append(name)
+        elif proc.returncode == SELF_SKIP:
+            skipped.append((name, lines[0] if lines else "skipped, and said nothing"))
         else:
-            tail = (proc.stdout + proc.stderr).strip().splitlines()
-            failed.append((name, tail[-1] if tail else f"exit {proc.returncode}"))
+            failed.append((name, lines[-1] if lines else f"exit {proc.returncode}"))
 
     print(f"=== {len(on_disk | declared)} tool(s)")
     for name in ran:

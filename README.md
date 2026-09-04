@@ -85,9 +85,10 @@ Six files are the method. The rest of the tree is this repository checking itsel
 | :--- | :--- |
 | `tools/check_readme.py` | re-measures the figures *this* README publishes |
 | `tools/check_steps.py` | asserts *this* body's step partition against *these* references |
+| `tools/check_tracker.py` | flags an issue whose open/closed state disagrees with its `status:` label |
 | `tools/check_all.py` | runs this repository's own checkers, from a manifest that names them |
 
-Those three are worth reading as worked examples - `check_all.py` is this method's partition-with-no-
+Those are worth reading as worked examples - `check_all.py` is this method's partition-with-no-
 fourth-outcome applied to a gate rather than to a report - but there is nothing in them for a consumer
 to run.
 
