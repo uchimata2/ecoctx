@@ -15,49 +15,52 @@ Say **"audit my context"** to start. Say **"grade the audit"** later, once the f
 
 ## What it measured
 
-An example run, graded end to end. The one cost paid on every single session:
-
-```mermaid
-xychart-beta
-    title "Routing description, bytes"
-    x-axis ["before", "after"]
-    y-axis "bytes" 0 --> 700
-    bar [610, 497]
-```
-
-An 18.5% cut with every trigger kept. `tools/check_readme.py` re-measures it on every gate run.
-
-Tier 1, everything charged on every turn, moved twice in the same run:
+An example run, graded end to end, on a subject the method did not come from. Everything charged on
+every turn, before and after:
 
 ```mermaid
 xychart-beta
     title "Tier 1, bytes"
-    x-axis ["splits removed", "audit added", "net"]
-    y-axis "bytes" -4500 --> 3500
-    bar [-4214, 3405, -809]
+    x-axis ["total before", "total after", "clone before", "clone after", "user before", "user after"]
+    y-axis "bytes" 0 --> 30000
+    bar [29294, 22920, 17593, 11865, 11701, 11055]
 ```
 
-Both movements were measured; the net is their difference. Splitting also cost 1,117 bytes at the
-destinations and a new document of roughly 10 KB. **The repository got bigger and the per-turn charge
-got smaller** - if you check the total and expect it to fall, you will think the method failed.
+**6,374 bytes off every turn, 21.8%.** The split matters: 5,728 of it came out of files a clone
+inherits, 646 out of account-level files no clone gets. Quote the total as a property of the
+repository and you over-attribute by nearly half.
+
+**The audit's own additions to tier 1 were 580 bytes, 9.1% of what it removed.** In the method's first
+graded run that figure was 88% - a closing pass writing governance into the file it had just cleaned.
+The difference was one habit: every rule went into the script or the file it governs, never into the
+always-loaded one.
+
+Some of what it recommends still makes the repository bigger. That run added a 6,250-byte document, a
+205,646-byte asset and 58 lines of checks - none on a load path. If you check the total and expect it
+to fall, you will think the method failed.
+
+This project applied the method to itself once, on the one figure it pays every session: the routing
+description went from 610 to 497 bytes, an 18.5% cut with every trigger kept, re-measured by
+`tools/check_readme.py` on every gate run.
 
 ### Whether to trust it
 
+Two runs are graded, on unrelated subjects:
+
 ```mermaid
 xychart-beta
-    title "Thirteen findings, graded"
-    x-axis ["observations held", "bands held"]
-    y-axis "of 13" 0 --> 13
-    bar [13, 2]
+    title "Graded: observations vs bands"
+    x-axis ["run 1 obs", "run 1 bands", "run 2 obs", "run 2 bands"]
+    y-axis "held, of total" 0 --> 13
+    bar [13, 2, 6, 4]
 ```
 
-The inventory was right thirteen times out of thirteen. Two bands held as written: four were wrong on
-magnitude, three on the shape of the change, one on its premise, one measured a unit that did not exist
-and was withdrawn. One understated its own effect twentyfold.
+Thirteen of thirteen observations held in the first, six of six in the second. Bands did worse: two of
+thirteen, then four of six. **Every error sat in the proposed fix, none in the observation** - twice,
+independently.
 
-Every error sat in the proposed fix, none in the observation. So the method marks a proposed change as a
-hypothesis when you write it, and tells you to re-measure before carrying it out. A ranking obeyed
-instead would have deleted two tools' payloads.
+So the method marks a proposed change as a hypothesis when you write it, and tells you to re-measure
+before carrying it out. A ranking obeyed instead would have deleted two tools' payloads.
 
 ## What it does
 
@@ -96,10 +99,10 @@ collision with your own policy - your rule stands and the collision is reported.
 - **It does not price attention.** Shorter is assumed better; where a cut would make the agent guess,
   that is a risk field, not a measurement.
 - **No stranger has operated it.** The subject has been a stranger three times; the operator never has.
-- **Phase 2 has run once**, on the repository where the method was invented.
+- **Phase 2 has run twice.** Enough to repeat a result, not enough to call it a rate.
 
-The last two cannot be closed by any work in this repository, so they ship disclosed rather than
-solved. Why they are not release blockers is on [#47](../../issues/47).
+The stranger limit cannot be closed by any work in this repository, so it ships disclosed rather than
+solved. Why it is not a release blocker is on [#47](../../issues/47).
 
 ## What it costs to install
 
@@ -145,7 +148,7 @@ possible, and nobody has performed one. Three runs are recorded:
 | :--- | :--- | :--- | :--- |
 | 2026-08 | where the method was invented | **1-16** | the graded table above: thirteen findings, eleven bands missed |
 | 2026-08-15 | a second repository | 1-11 | two documents, and no answer to what the skill should have said |
-| 2026-09-04 | a third, unrelated to either | 1-11 | six findings, and four entries on what the method failed to say |
+| 2026-09-04 | a third, unrelated to either | **1-16** | six findings, all fixed, then graded: 21.8% off every turn |
 
 The gate is three rows, passed when all three issues are closed: the method's known silences
 ([#40](../../issues/40), [#41](../../issues/41), [#42](../../issues/42), [#43](../../issues/43)), what
