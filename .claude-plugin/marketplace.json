@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace-manifest.json",
+  "name": "ecoctx",
+  "owner": {
+    "name": "uchimata2",
+    "url": "https://github.com/uchimata2"
+  },
+  "description": "An audit of what your coding agent reads before it does anything, installable as a Claude Code plugin.",
+  "plugins": [
+    {
+      "name": "ecoctx",
+      "source": "./",
+      "description": "Measure what your coding agent loads before it does anything, rank what can actually be changed, then grade every prediction against what it bought. Sixteen steps, two phases, and a record another person can check.",
+      "license": "MIT",
+      "keywords": [
+        "context",
+        "tokens",
+        "audit",
+        "cost",
+        "instructions",
+        "skills",
+        "measurement"
+      ]
+    }
+  ]
+}

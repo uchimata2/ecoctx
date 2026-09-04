@@ -31,7 +31,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 README = ROOT / "README.md"
-SKILL = ROOT / "SKILL.md"
+SKILL_DIR = ROOT / "skills" / "ecoctx"   # a plugin's skills live under skills/<name>/
+SKILL = SKILL_DIR / "SKILL.md"
 
 ROW_RE = re.compile(r"^\|\s*(.+?)\s*\|\s*([\d,]+)\s*\|", re.M)
 # Whitespace-tolerant: both sentences wrap, and a regex that assumes single spaces reports a

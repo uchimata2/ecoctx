@@ -11,7 +11,7 @@ any edit.
 - `tracker_status`: label:status:
 - `tracker_status_done`: done
 - `tracker_workflow`: the taskmd method, `plugin/skills/taskmd/docs/METHOD.md` in the taskmd repository
-- `project_docs`: README.md, SKILL.md, references/
+- `project_docs`: README.md, skills/ecoctx/SKILL.md, skills/ecoctx/references/
 - `reconcile_targets`: README.md, .taskmd/config.md, GitHub Issues on uchimata2/ecoctx
 
 `memory` is not a project key. Claude Code supplies `memory: claude` from its own stub.

@@ -107,9 +107,9 @@ Order is rank, best first: `critical` outranks `high`, and `xs` is cheaper than 
 Neither field is enumerated, so neither is a label: both live in the property block at the top of an
 issue body, by the binding's rule 3.
 
-`work_package` groups the backlog into seven, run in this sequence — **A-ground-clearing**,
+`work_package` groups the backlog into eight, run in this sequence — **A-ground-clearing**,
 **B-decided-spine**, **C-measure**, **D-judge**, **E-standing**, **F-tooling**,
-**G-publication-gate**. `order` is one contiguous sequence across the **whole** backlog rather than
+**G-publication-gate**, **H-release**. `order` is one contiguous sequence across the **whole** backlog rather than
 one per package, so a row's position reads without knowing which package it belongs to.
 
 Two invariants, and nothing checks either automatically:

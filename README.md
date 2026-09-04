@@ -58,10 +58,10 @@ waiting for a reader.
 | Stage | Bytes | Paid |
 | :--- | ---: | :--- |
 | Routing description | 497 | every session, whether or not you use it |
-| `SKILL.md` body | 8,334 | when the skill activates |
-| `references/measure.md` | 28,283 | steps 1 to 5 only |
-| `references/judge.md` | 32,584 | steps 6 to 11 only |
-| `references/standing.md` | 16,571 | steps 12 to 16 only |
+| `skills/ecoctx/SKILL.md` body | 8,334 | when the skill activates |
+| `skills/ecoctx/references/measure.md` | 28,283 | steps 1 to 5 only |
+| `skills/ecoctx/references/judge.md` | 32,584 | steps 6 to 11 only |
+| `skills/ecoctx/references/standing.md` | 16,571 | steps 12 to 16 only |
 
 497 bytes is the only figure that compounds. Everything below it is paid once, by a session that
 asked for it, and never two references at a time, because the body routes to exactly one. The largest
@@ -72,12 +72,14 @@ the method applied to itself, and it is the first measurement this project made.
 
 ## What ships, and what you need
 
-Six files are the method. The rest of the tree is this repository checking itself.
+Six files are the method. Two more are packaging - `.claude-plugin/plugin.json` and
+`.claude-plugin/marketplace.json`, which are what make it installable. The rest of the tree is this
+repository checking itself.
 
 | Ships | What it is |
 | :--- | :--- |
-| `SKILL.md` | the body - the routing table, the four refusals, the two rules that decide most disagreements |
-| `references/measure.md`, `references/judge.md`, `references/standing.md` | the steps, one file per stretch of the run, and never more than one loaded |
+| `skills/ecoctx/SKILL.md` | the body - the routing table, the four refusals, the two rules that decide most disagreements |
+| `skills/ecoctx/references/measure.md`, `skills/ecoctx/references/judge.md`, `skills/ecoctx/references/standing.md` | the steps, one file per stretch of the run, and never more than one loaded |
 | `tools/findings.py` | answers *which finding is which task, and what state is it in*. Tracker-agnostic by configuration, reading `.ecoctx.json` at the root of the repository being audited |
 | `tools/selftest.py` | exercises `findings.py` against fixtures it builds itself. It ships because of the Python floor below |
 
@@ -92,7 +94,7 @@ Those are worth reading as worked examples - `check_all.py` is this method's par
 fourth-outcome applied to a gate rather than to a report - but there is nothing in them for a consumer
 to run.
 
-**The version is stated in `SKILL.md`**, with what its two numbers mean. One of them exists only to say
+**The version is stated in `skills/ecoctx/SKILL.md`**, with what its two numbers mean. One of them exists only to say
 whether a phase 1 and the phase 2 grading it, taken months apart, were run under the same rubric.
 
 **What you need.**
