@@ -72,10 +72,16 @@ the method applied to itself, and it is the first measurement this project made.
 
 ## Status
 
-Pre-publication, and honest about why. The method has one recorded end-to-end run, on the repository
-where it was invented. Running it against a repository that is neither that one nor this one is an
-acceptance criterion rather than a nice-to-have: until that has happened, the first stranger to run
-it would also be its first real test.
+Pre-publication, and honest about why. The method now has **two** recorded runs. The second, on
+2026-09-04, was phase 1 against a subject that is neither the first run's nor this repository - the
+acceptance criterion that stood here until then, met. It is not the end of the argument: both runs
+were performed by the agent that maintains the method, so the *subject* has been a stranger and the
+operator has not.
+
+**A single session runs phase 1, and only phase 1.** Steps 12-16 grade predictions against measured
+outcomes, so they need the raised work to have been implemented first. A run's report still carries
+all sixteen rows - the second phase's five marked *not run*, with that reason. Anyone expecting
+sixteen steps in one sitting is expecting something the method refuses.
 
 Work on this repository is tracked as GitHub Issues, using taskmd's issues backend. One task per
 issue, and the issue number is the task id. Two consequences worth knowing before you open one:

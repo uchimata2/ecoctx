@@ -57,7 +57,11 @@ The three named in `reconcile_targets`, and each for a different reason:
   five rows and the arithmetic identity on every run of `check_all.py`, in bytes on LF. It caught
   #3's edit to `SKILL.md` in the same batch, before a reader did. What is still hand-kept is the
   README's **prose** — the recorded run's counts, the claims about what the method cannot do —
-  and nothing measures those.
+  and nothing measures those. **This fired on 2026-09-04**, one batch after it was written: the
+  *Status* section still said the method had one recorded run, on the repository where it was
+  invented. The batch that made both halves false was two commits from shipping it, and
+  `check_all.py` stayed green the whole way, because every figure it checks was still correct.
+  Only the sweep caught it.
 
   *The original entry read: "Any edit to `SKILL.md` or a reference changes numbers that the README
   states as fact and nothing recomputes." It was right for as long as it was true, and it is kept
