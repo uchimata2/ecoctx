@@ -192,6 +192,14 @@ That boundary is worth more than the tokens it failed to save.
    present before a tool is chosen. **The item you cannot change still belongs in the inventory,
    marked.**
 
+   **A transcript, a log, and a cache the agent writes and never reads back are not recalled stores.**
+   *By itself*, above, already excludes them — and excludes them only to a reader who parses a
+   qualifier inside a list, which is later than the mistake is made. They commonly sit in the same
+   directory as the store, under the same tool's control, and can outweigh it by orders of magnitude,
+   so an inventory that sweeps the tree reports a load path dominated by files no session ever loads.
+   Check against the **class**, never against a directory layout: the class is the method's, and the
+   layout dates (step 16).
+
    **Establish membership by observation — and observe the right thing.** Most of what loads at
    startup is invisible in the terminal: hook output prints nothing, and the environment block and the
    tool catalogue scroll past nobody. So the observation is of the agent's **own report of its

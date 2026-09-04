@@ -59,7 +59,7 @@ waiting for a reader.
 | :--- | ---: | :--- |
 | Routing description | 497 | every session, whether or not you use it |
 | `SKILL.md` body | 6,819 | when the skill activates |
-| `references/measure.md` | 26,601 | steps 1 to 5 only |
+| `references/measure.md` | 27,233 | steps 1 to 5 only |
 | `references/judge.md` | 31,581 | steps 6 to 11 only |
 | `references/standing.md` | 16,000 | steps 12 to 16 only |
 
