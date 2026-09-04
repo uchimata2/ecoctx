@@ -6,6 +6,13 @@ behind you; `standing.md` is months ahead and cannot be faked from here.
 **Steps 1–4 were measured. Everything in this file is estimated**, and the difference is the single
 most important thing the record carries.
 
+**Every value set below is closed. Where an honest case fits none of a set's values, use the nearest
+value and record the mismatch as a friction entry — never invent a value mid-run.** Step 14 reads the
+log, which is where `standing.md` already judges a rubric extended in the field, so the entry is the
+evidence a revision of the set would need. One mechanism serves every set here: verdicts, bands,
+families, and the finding record's enumerated fields. Decided on #38, which names the rejected
+alternative — a stated escape per set — and what would overturn it.
+
 ---
 
 ## 6. Read the local precedent
