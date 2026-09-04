@@ -192,6 +192,14 @@ That boundary is worth more than the tokens it failed to save.
    present before a tool is chosen. **The item you cannot change still belongs in the inventory,
    marked.**
 
+   **A transcript, a log, and a cache the agent writes and never reads back are not recalled stores.**
+   *By itself*, above, already excludes them — and excludes them only to a reader who parses a
+   qualifier inside a list, which is later than the mistake is made. They commonly sit in the same
+   directory as the store, under the same tool's control, and can outweigh it by orders of magnitude,
+   so an inventory that sweeps the tree reports a load path dominated by files no session ever loads.
+   Check against the **class**, never against a directory layout: the class is the method's, and the
+   layout dates (step 16).
+
    **Establish membership by observation — and observe the right thing.** Most of what loads at
    startup is invisible in the terminal: hook output prints nothing, and the environment block and the
    tool catalogue scroll past nobody. So the observation is of the agent's **own report of its
@@ -237,7 +245,21 @@ That boundary is worth more than the tokens it failed to save.
    a deletion but a conversion, which is why it is filed under F4 rather than F1 (`judge.md`).
 
 3. **Inventory tool output (C).** For each gate or command a unit of work runs, the size of what it
-   prints on a **green** run. The failing case is rare and its verbosity is usually earned.
+   prints on a **green** run — the case a unit of work normally pays, and the one whose verbosity is
+   not already earned by a failure.
+
+   **Where no green run is available, do not go looking for one.** A subject whose gate is red on
+   pre-existing failures cannot produce the figure this step asks for, and it can be made to only by
+   repairing the subject — which is the one remedy an auditor is not here to apply. So: **record the
+   measured figure with the state it was measured in**; **derive the green figure where the failure is
+   separable**; and **label both by how each was produced**. The last of the three is the one that
+   carries the weight — a derived figure and a measured one read identically once written down, and
+   only the label keeps them apart. **The derived figure never separates two findings**, which is the
+   bar `SKILL.md` already places on the byte-to-token conversion, on a second estimate and for the
+   same reason.
+
+   *The failing case is rare* is a fact about a project's own day-to-day, not about the moment an
+   outsider arrives to audit it. A gate that happens to be green then is the lucky case.
 
    **Then say what could be removed without losing the failure signal.** Measuring what a command
    prints is not a remedy, and this surface is the one where a tool's own default decides the cost, so
@@ -264,9 +286,25 @@ adequate.
 | **B** | **named tools, by name** | searching for *ideas* never reaches a technique whose name is a product. Six of fourteen new techniques in the one recorded re-run came only from here, and so did its single largest correction |
 | **C** | **the harness's own documented mechanisms** | it found three techniques and had never been treated as a source at all. Its published model of what a session loads is also the only external check on step 1's enumeration: run one against the other, and take the **taxonomy** rather than the figures, which are usually illustrative and sized to a window that has since moved |
 
-**Declare saturation per axis, and list the empty rounds.** An axis stops when a full round adds
-nothing, **and the round that added nothing is written down.** Without that row a reader cannot judge
-whether the axis stopped early, and the record documents an arbitrary stop.
+**Declare per axis how it stopped. There are two shapes, and an axis whose record fits neither has
+not been recorded.**
+
+| Shape | Written when | What the row carries |
+| :--- | :--- | :--- |
+| **saturated** | a full round added nothing | the empty round itself, written down |
+| **stopped, not saturated** | the axis was still producing when the run ran out | what the last round **still added**, and **what stopped it** — a session budget, a time box, a decision |
+
+Without the first row a reader cannot judge whether a saturated axis stopped early, and the record
+documents an arbitrary stop. Without the second, a run that stopped early has only the saturated shape
+to write in, and must either claim a saturation that did not happen or invent a form this document does
+not describe. **The second shape is the ordinary case**, not the exception: a run whose budget expires
+while every axis is still producing is the common outcome, and it was the shape missing for as long as
+only saturation had one.
+
+**The shape travels with the catalogue, at its top rather than in a footnote.** Step 7's partition
+inherits whatever completeness this record has and has to cite it (`judge.md`); a qualification a
+reader meets four steps earlier, or at the foot of a page, is one that arrives after the sum has been
+read as coverage.
 
 **Expect an order of magnitude, not a handful.** The first pass of the one recorded run produced
 nineteen entries and read as complete; under the coverage rule the catalogue reached **35**. A

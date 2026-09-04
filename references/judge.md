@@ -6,6 +6,13 @@ behind you; `standing.md` is months ahead and cannot be faked from here.
 **Steps 1–4 were measured. Everything in this file is estimated**, and the difference is the single
 most important thing the record carries.
 
+**Every value set below is closed. Where an honest case fits none of a set's values, use the nearest
+value and record the mismatch as a friction entry — never invent a value mid-run.** Step 14 reads the
+log, which is where `standing.md` already judges a rubric extended in the field, so the entry is the
+evidence a revision of the set would need. One mechanism serves every set here: verdicts, bands,
+families, and the finding record's enumerated fields. Decided on #38, which names the rejected
+alternative — a stated escape per set — and what would overturn it.
+
 ---
 
 ## 6. Read the local precedent
@@ -62,6 +69,12 @@ counterproductive = every technique gathered* is arithmetic over what you happen
 summed correctly, and read as complete, over **nineteen entries of a catalogue that turned out to hold
 35** — right about a bit over half. Step 5's search record is the only guard, and it is weaker than
 the partition: a search record can be read and judged, but nothing can prove a survey complete.
+
+**So the partition cites the shape it inherited** — per axis, `saturated` or `stopped, not saturated`,
+in step 5's terms — stated beside the sum rather than left four steps upstream. The sum is what a
+reader trusts, so the qualification has to arrive with it; a partition over a catalogue whose every
+axis stopped early is a different object from one over a saturated survey, and nothing in the
+arithmetic can tell them apart.
 
 ---
 
