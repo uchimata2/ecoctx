@@ -92,7 +92,7 @@ first run needed them and the four-value table could not express a gain that is 
 | `L` | roughly a tenth to a third |
 | `M` | a few per cent |
 | `S` | under a per cent, or unquantifiable but real |
-| `enabler` | it saves nothing and makes a later saving decidable. **Its gain is the finding it unblocks, named** |
+| `enabler` | it saves nothing and makes a later saving decidable. **Its gain is the finding it unblocks, named.** Recognise it by shape: a change that makes a figure *visible*, answers a *question*, restores an instrument, or names a *share* of a total rather than a cut from it. None of those is a saving, however large the figure it exposes |
 | `bimodal` | it costs one surface to save another. **Both figures are stated, and the trade is argued rather than netted** |
 
 **A band is always read against its own surface.** `L` on the load path and `L` on the read path are

@@ -1,6 +1,6 @@
 {
   "name": "ecoctx",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Measure what your coding agent loads before it does anything, rank what can actually be changed, then grade every prediction against what it bought. Sixteen steps, two phases, and a record another person can check.",
   "author": {
     "name": "the ecoctx maintainers",
