@@ -76,7 +76,7 @@ substitute an artifact sum: unlabelled, it reads exactly like a measurement.
 
 ## Version, and what it means for a phase 2
 
-**rubric 2, revision 1**, and rubric 1 was written on **2026-09-04**. Written as words: two dot-separated integers would be read as SemVer, whose
+**rubric 2, revision 2**, and rubric 1 was written on **2026-09-04**. Written as words: two dot-separated integers would be read as SemVer, whose
 question is not this one — nothing here breaks at run time, and what can break is a comparison taken
 months apart. `.claude-plugin/plugin.json` carries the same version as `1.1.0`, because the platform
 refuses anything that is not semver — `claude plugin tag` rejects a non-semver version, and dependency

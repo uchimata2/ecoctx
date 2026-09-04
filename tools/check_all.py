@@ -41,6 +41,10 @@ MANIFEST: dict[str, tuple[list[str] | None, str]] = {
         ["tools/check_charts.py"],
         "",
     ),
+    "check_prose.py": (
+        ["tools/check_prose.py"],
+        "",
+    ),
     "check_readme.py": (
         ["tools/check_readme.py"],
         "",
