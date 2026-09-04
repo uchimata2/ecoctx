@@ -114,7 +114,10 @@ whether a phase 1 and the phase 2 grading it, taken months apart, were run under
 
 ## Status
 
-Pre-publication, and honest about why. Three runs are recorded, and they are not the same thing:
+**Pre-publication** - a fact about publication, not about the gate below. Passing the gate makes a
+release possible; it does not perform one, and nobody has. The two limits disclosed under the gate stay
+true whatever its rows say, and they are the honest reason to read this section before trusting the
+method. Three runs are recorded, and they are not the same thing:
 
 | When | Subject | Steps | What it produced |
 | :--- | :--- | :--- | :--- |
