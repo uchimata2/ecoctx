@@ -51,7 +51,7 @@ Two documents and one register, and the split between them is by **who can act**
 | **This project** | The project's own report, ranked |
 | **Upstream** | A section of that report, written to be handed over, never implemented locally |
 
-**The report carries the sixteen-step partition as a table**, one row per step, each *ran* or
+**The report carries the full step partition as a table**, one row per step, each *ran* or
 *not run, with a stated reason*. A step in neither fails the audit, and a partition a reader has to
 reconstruct is not one a later reader can check.
 
