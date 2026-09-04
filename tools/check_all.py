@@ -37,6 +37,10 @@ SELF_SKIP = 2
 # name -> (argv after the interpreter, or None) and a reason when it is not run.
 # A tool that cannot run here states why, in one sentence, checkable by a reader.
 MANIFEST: dict[str, tuple[list[str] | None, str]] = {
+    "check_charts.py": (
+        ["tools/check_charts.py"],
+        "",
+    ),
     "check_readme.py": (
         ["tools/check_readme.py"],
         "",
