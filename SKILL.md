@@ -51,6 +51,10 @@ Two documents and one register, and the split between them is by **who can act**
 | **This project** | The project's own report, ranked |
 | **Upstream** | A section of that report, written to be handed over, never implemented locally |
 
+**The report carries the sixteen-step partition as a table**, one row per step, each *ran* or
+*not run, with a stated reason*. A step in neither fails the audit, and a partition a reader has to
+reconstruct is not one a later reader can check.
+
 **The byproduct register is the fourth output and sits outside the ranking.** Checking every file for
 one thing means seeing other things; record them, never band them, and read the register **for a
 shape** at step 12 rather than only row by row.

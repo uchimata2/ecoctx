@@ -24,7 +24,7 @@ Configuration is a JSON file, `.ecoctx.json` at the root of the audited reposito
 has a default; a project whose shape matches them needs no file at all.
 
     {
-      "report":             "AUDIT.md",
+      "report":             "AUDIT.md",   // or ["AUDIT.md", "AUDIT-portable.md"]
       "id_pattern":         "CE-[0-9]+",
       "tasks_glob":         "tasks/*.md",
       "task_finding_field": "finding",
@@ -32,6 +32,14 @@ has a default; a project whose shape matches them needs no file at all.
       "closed_statuses":    ["done", "cancelled"],
       "closed_marker":      "~~"
     }
+
+`report` is one path, or a list of them. The method declares **one numbering space across both
+output documents**, each finding stated in full in exactly one of them, so a hole in the sequence is
+a finding that was stated and lost. Reading one document and calling the space contiguous is how
+such a hole stays invisible - configure both and the gap is reported.
+
+**A clean exit says what it compared.** Where `tasks_glob` matches no files the run notes it, because
+an unraised backlog and a wrong glob produce the same silence and only one of them is a comparison.
 
 `closed_marker` is how the report marks a row as closed — strikethrough by default. A project
 that marks closure some other way sets it, or sets it to "" and the row state is never
@@ -100,11 +108,19 @@ def front_matter(text: str) -> dict[str, str]:
     return out
 
 
-def scan_tasks(root: Path, cfg: dict) -> dict[str, list[tuple[str, str]]]:
-    """finding id -> [(task stem, status)]. A task naming no finding is skipped."""
+def scan_tasks(root: Path, cfg: dict) -> tuple[dict[str, list[tuple[str, str]]], int]:
+    """finding id -> [(task stem, status)], and how many files the glob matched.
+
+    The count is returned rather than re-derived by the caller because two states look identical
+    in the mapping and are not the same: a task tree with nothing raised yet - clean, and the case
+    this tool was designed around - and a `tasks_glob` that matches nothing at all, where the
+    comparison never happened. One glob, one owner, so the two cannot drift apart.
+    """
     id_re = re.compile(cfg["id_pattern"])
     found: dict[str, list[tuple[str, str]]] = {}
+    matched = 0
     for p in sorted(root.glob(cfg["tasks_glob"])):
+        matched += 1
         fm = front_matter(p.read_text(encoding="utf-8", errors="replace"))
         raw = fm.get(cfg["task_finding_field"], "")
         if not raw:
@@ -112,7 +128,38 @@ def scan_tasks(root: Path, cfg: dict) -> dict[str, list[tuple[str, str]]]:
         status = fm.get(cfg["task_status_field"], "?")
         for fid in id_re.findall(raw):
             found.setdefault(fid, []).append((p.stem, status))
-    return found
+    return found, matched
+
+
+def report_paths(cfg: dict) -> list[str]:
+    """The configured document(s), as a list however `report` was written.
+
+    One key rather than two: the two output documents are one numbering space, and a second key
+    would be a second home for the same fact.
+    """
+    r = cfg["report"]
+    return [r] if isinstance(r, str) else list(r)
+
+
+def gaps(ids: list[str]) -> tuple[list[str], str | None]:
+    """Ids the sequence skips, and a reason when contiguity cannot be read at all.
+
+    Grouped by the non-numeric prefix, so a project ranking `CE-` and `E-` in one space is checked
+    per sequence rather than across two that were never one. The missing id is rebuilt at the width
+    its neighbours use, because `CE-3` in a report of `CE-03`s is not a searchable string.
+    """
+    seqs: dict[str, list[tuple[int, int]]] = {}
+    for fid in ids:
+        m = re.match(r"^(.*?)(\d+)$", fid)
+        if not m:
+            return [], f"{fid!r} has no numeric tail"
+        seqs.setdefault(m.group(1), []).append((int(m.group(2)), len(m.group(2))))
+    missing: list[str] = []
+    for prefix, seen in seqs.items():
+        nums = {n for n, _ in seen}
+        width = max((w for _, w in seen), key=lambda w: [w for _, w in seen].count(w))
+        missing += [f"{prefix}{n:0{width}d}" for n in range(min(nums), max(nums) + 1) if n not in nums]
+    return sorted(missing), None
 
 
 def scan_report(root: Path, cfg: dict) -> dict[str, bool | None]:
@@ -129,24 +176,25 @@ def scan_report(root: Path, cfg: dict) -> dict[str, bool | None]:
     What it cannot see: a row struck for some reason other than closure. The tool reports what
     the report says; where that is wrong, the disagreement it raises is the point.
     """
-    path = root / cfg["report"]
-    if not path.exists():
-        sys.exit(f"findings: report not found at {cfg['report']} - set \"report\" in .ecoctx.json")
     id_re = re.compile(cfg["id_pattern"])
     marker = cfg["closed_marker"]
     rows: dict[str, bool | None] = {}
-    for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
-        if not line.lstrip().startswith("|"):
-            continue
-        ids = id_re.findall(line)
-        if not ids:
-            continue
-        struck = bool(marker) and marker in line
-        for fid in ids:
-            if not marker:
-                rows[fid] = None
-            else:
-                rows[fid] = rows.get(fid) or struck
+    for name in report_paths(cfg):
+        path = root / name
+        if not path.exists():
+            sys.exit(f"findings: report not found at {name} - set \"report\" in .ecoctx.json")
+        for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
+            if not line.lstrip().startswith("|"):
+                continue
+            ids = id_re.findall(line)
+            if not ids:
+                continue
+            struck = bool(marker) and marker in line
+            for fid in ids:
+                if not marker:
+                    rows[fid] = None
+                else:
+                    rows[fid] = rows.get(fid) or struck
     return rows
 
 
@@ -159,7 +207,7 @@ def main() -> int:
 
     root = args.root.resolve() if args.root else repo_root(Path.cwd())
     cfg = load_config(root, args.config)
-    tasks = scan_tasks(root, cfg)
+    tasks, matched = scan_tasks(root, cfg)
     rows = scan_report(root, cfg)
     closed_statuses = set(cfg["closed_statuses"])
 
@@ -187,12 +235,26 @@ def main() -> int:
     for fid in sorted(set(tasks) - set(rows), key=lambda s: (len(s), s)):
         problems.append(f"{fid}: named by a task, stated in no report row")
 
+    # A hole in the sequence is a finding that was stated and lost - a different defect from the
+    # dangling id above, and reported in different words so the two are not read as one.
+    missing, unreadable = gaps(list(rows))
+    for fid in missing:
+        problems.append(f"{fid}: a gap in the numbering, stated in no document")
+
     print("\n".join(lines))
     linked = sum(len(v) for v in tasks.values())
     print(f"\nfindings: {len(rows)} stated, {len(tasks)} with a task, {linked} task(s) linked, "
           f"{len(problems)} disagreeing")
+    if not matched:
+        print(f"note: {cfg['tasks_glob']} matched no files, so nothing was compared - this is a "
+              f"clean exit over an absent task side, not over an agreeing one")
     if cfg["closed_marker"] == "":
         print("note: closed_marker is empty, so row state is not read and half the check is off")
+    if unreadable:
+        print(f"note: {unreadable}, so the numbering is not read as a sequence and gaps are not checked")
+    elif len(report_paths(cfg)) == 1:
+        print("note: one document is configured, so a finding stated only in the other is a gap "
+              "this run cannot see")
     for p in problems:
         print(f"  MISMATCH  {p}")
 

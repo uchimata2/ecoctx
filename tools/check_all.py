@@ -27,6 +27,14 @@ ROOT = Path(__file__).resolve().parent.parent
 # name -> (argv after the interpreter, or None) and a reason when it is not run.
 # A tool that cannot run here states why, in one sentence, checkable by a reader.
 MANIFEST: dict[str, tuple[list[str] | None, str]] = {
+    "check_readme.py": (
+        ["tools/check_readme.py"],
+        "",
+    ),
+    "check_steps.py": (
+        ["tools/check_steps.py"],
+        "",
+    ),
     "selftest.py": (
         ["tools/selftest.py"],
         "",
