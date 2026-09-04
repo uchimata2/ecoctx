@@ -237,7 +237,21 @@ That boundary is worth more than the tokens it failed to save.
    a deletion but a conversion, which is why it is filed under F4 rather than F1 (`judge.md`).
 
 3. **Inventory tool output (C).** For each gate or command a unit of work runs, the size of what it
-   prints on a **green** run. The failing case is rare and its verbosity is usually earned.
+   prints on a **green** run — the case a unit of work normally pays, and the one whose verbosity is
+   not already earned by a failure.
+
+   **Where no green run is available, do not go looking for one.** A subject whose gate is red on
+   pre-existing failures cannot produce the figure this step asks for, and it can be made to only by
+   repairing the subject — which is the one remedy an auditor is not here to apply. So: **record the
+   measured figure with the state it was measured in**; **derive the green figure where the failure is
+   separable**; and **label both by how each was produced**. The last of the three is the one that
+   carries the weight — a derived figure and a measured one read identically once written down, and
+   only the label keeps them apart. **The derived figure never separates two findings**, which is the
+   bar `SKILL.md` already places on the byte-to-token conversion, on a second estimate and for the
+   same reason.
+
+   *The failing case is rare* is a fact about a project's own day-to-day, not about the moment an
+   outsider arrives to audit it. A gate that happens to be green then is the lucky case.
 
    **Then say what could be removed without losing the failure signal.** Measuring what a command
    prints is not a remedy, and this surface is the one where a tool's own default decides the cost, so
