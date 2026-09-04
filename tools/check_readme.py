@@ -36,8 +36,9 @@ SKILL = SKILL_DIR / "SKILL.md"
 
 ROW_RE = re.compile(r"^\|\s*(.+?)\s*\|\s*([\d,]+)\s*\|", re.M)
 # Whitespace-tolerant: both sentences wrap, and a regex that assumes single spaces reports a
-# reworded sentence when all that changed was where the line broke.
-SUM_RE = re.compile(r"largest\s+possible\s+single-phase\s+cost\s+is\s+([\d,]+)\s+plus\s+"
+# reworded sentence when all that changed was where the line broke. `possible` is optional for the
+# same reason: the claim under check is the arithmetic, not the adjective in front of it.
+SUM_RE = re.compile(r"largest\s+(?:possible\s+)?single-phase\s+cost\s+is\s+([\d,]+)\s+plus\s+"
                     r"([\d,]+),\s+or\s+([\d,]+)")
 COMPOUND_RE = re.compile(r"([\d,]+)\s+bytes\s+is\s+the\s+only\s+figure\s+that\s+compounds")
 PATH_RE = re.compile(r"`([A-Za-z0-9_./-]+\.md)`")
