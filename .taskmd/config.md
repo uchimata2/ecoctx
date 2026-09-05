@@ -112,12 +112,16 @@ issue body, by the binding's rule 3.
 **G-publication-gate**, **H-release**. `order` is one contiguous sequence across the **whole** backlog rather than
 one per package, so a row's position reads without knowing which package it belongs to.
 
-Two invariants, and nothing checks either automatically:
+Two invariants, one of them checked:
 
 - **Every `blocked_by` edge points backwards in the order.** A blocker ordered after the thing it
-  blocks is a scheduling contradiction, and the order is what a reader trusts.
+  blocks is a scheduling contradiction, and the order is what a reader trusts. **Nothing checks this**,
+  by decision: all eight edges were measured on 2026-09-05 and every one held, so #83 was closed
+  unbuilt rather than adding an eighth checker for a rule nothing has broken.
 - **`related` is written at both ends or it does not exist**, because this backend derives no inverse
   for it (see *Edges*). A pair written once is a half-edge that reads as absent from the other side.
+  **`tools/check_tracker.py` is what flags it**, since #81. Its first run found 23 across 51 issues,
+  the rule having been honoured for slightly under half the edges that existed.
 
 **A byproduct register row is never ranked**, so it carries `work_package: outside-ranking`, no
 `order`, and the label below.

@@ -61,6 +61,11 @@ The three named in `reconcile_targets`, and each for a different reason:
   when a chart in `assets/` draws a figure the prose does not state, and `check_prose.py` fails on
   an em dash, a curly quote or an inflated word. Both cover mechanics. **What a sentence claims is
   still hand-kept**, and every miss recorded here was a claim rather than a character.
+  **It fired twice more on 2026-09-05**, in the same batch that gave `check_readme.py` its count
+  rules: *it refuses four things* had been five since #39, and *nobody has performed a release* had
+  been false since 1.1.0. Neither is a figure, so no instrument could see either — and the first is
+  a **count**, of which `check_readme.py` now checks five. A sixth with no rule written for it is
+  invisible, and that file's docstring says so out loud.
   **This fired on 2026-09-04**, one batch after it was written: the
   *Status* section still said the method had one recorded run, on the repository where it was
   invented. The batch that made both halves false was two commits from shipping it, and
@@ -72,5 +77,7 @@ The three named in `reconcile_targets`, and each for a different reason:
   here because it is the entry that produced the issue that retired it.*
 - **.taskmd/config.md** enumerates the vocabularies, and every value is a GitHub label. Adding a
   value without creating its label fails the next write that uses it.
-- **GitHub Issues** renders `state` from the `status:` label. A status changed one way and not the
-  other leaves the issue contradicting itself, and no view flags it.
+- **GitHub Issues** renders `state` from the `status:` label, and carries `related` edges that this
+  backend derives no inverse for. **Both are now checked** by `tools/check_tracker.py`, the second
+  since #81. What is still unchecked here is an edge nobody wrote at either end, which no view can
+  see and no checker can either.

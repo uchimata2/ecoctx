@@ -72,9 +72,10 @@ Phase 2 needs measured outcomes, so a single session runs phase 1 and stops.
 Five outputs, split by who can act: portable findings, your ranked report, an upstream section to hand
 over, a byproduct register, and a friction log addressed to the method itself.
 
-It refuses four things: a catalogue with no search record, a gain band written before the mechanism is
-named, a policy rule that does not name the document already governing the act, and resolving a
-collision with your own policy - your rule stands and the collision is reported.
+It refuses five things: a catalogue with no search record, a gain band written before the mechanism is
+named, a policy rule that does not name the document already governing the act, resolving a collision
+with your own policy - your rule stands and the collision is reported - and claiming tier-1 membership
+it did not observe, so a row read from your files is a candidate and never a member.
 
 ## Limits
 
@@ -82,14 +83,14 @@ collision with your own policy - your rule stands and the collision is reported.
 - **It measures artifacts, not sessions.** A file size is what a session *could* pay.
 - **It ranks on context runway alone.** An act that reprices a session without changing what sits in
   the window is named and never banded.
-- **It cannot separate operative prose from narrative** mechanically.
+- **It cannot mechanically separate operative prose from narrative.**
 - **It does not price attention.** Shorter is assumed better; where a cut would make the agent guess,
   that is a risk field, not a measurement.
 - **No stranger has operated it.** The subject has been a stranger three times; the operator never has.
 - **Phase 2 has run twice.** Enough to repeat a result, not enough to call it a rate.
 
 The stranger limit cannot be closed by any work in this repository, so it ships disclosed rather than
-solved. Why it is not a release blocker is on [#47](../../issues/47).
+solved. [#47](../../issues/47) says why it is not a release blocker.
 
 ## What it costs to install
 
@@ -116,7 +117,7 @@ three files that state the version stop agreeing with each other.
 
 - **Python 3**, standard library only, no network. `python tools/selftest.py` passes 19 of 19 on
   **3.12.10** and **3.14.4**. The floor below them is **undetermined** - unmeasured, not absent. On any
-  other version, that command is how you find out, which is why it ships.
+  other version, that command is how you find out. It ships for that reason.
 - **Text task records**, if you want `findings.py`: a `key: value` front-matter block, one key naming a
   finding. If your tracker is not files, that one tool does not apply and no step depends on it.
 - **A way to measure without reading** - sizes off the filesystem, command output captured to a file.
@@ -124,14 +125,14 @@ three files that state the version stop agreeing with each other.
 - **An agent that can report its own context.** Step 1 asks the agent what it loaded, never reads the
   screen. A harness that cannot answer leaves step 1 nothing to observe, and the audit says so.
 
-Version `rubric 3, revision 2`, stated in `skills/ecoctx/SKILL.md`. The rubric number says whether a
-phase 1 and the phase 2 grading it ran under the same rubric. `plugin.json` renders it `3.2.0` because
+Version `rubric 2, revision 7`, stated in `skills/ecoctx/SKILL.md`. The rubric number says whether a
+phase 1 and the phase 2 grading it ran under the same rubric. `plugin.json` renders it `2.7.0` because
 the platform requires semver.
 
 ## Status
 
-Pre-publication, which is a fact about publication and not about the gate: passing it makes a release
-possible, and nobody has performed one. Three runs are recorded:
+Published. A release becomes possible once the gate below passes, and the releases themselves are
+listed on the repository rather than counted here. Three runs are recorded:
 
 | When | Subject | Steps | Produced |
 | :--- | :--- | :--- | :--- |
