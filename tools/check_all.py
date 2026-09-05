@@ -57,6 +57,10 @@ MANIFEST: dict[str, tuple[list[str] | None, str]] = {
         ["tools/check_tracker.py"],
         "",
     ),
+    "check_version.py": (
+        ["tools/check_version.py"],
+        "",
+    ),
     "selftest.py": (
         ["tools/selftest.py"],
         "",

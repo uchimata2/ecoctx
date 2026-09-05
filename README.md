@@ -109,9 +109,10 @@ single-phase cost is 9,285 plus 32,814, or 42,099 bytes.
 ## What ships, and what you need
 
 Six files are the method: `skills/ecoctx/SKILL.md`, the three references, and `tools/findings.py` with
-`tools/selftest.py`. Two more are packaging, in `.claude-plugin/`. The six checkers in `tools/` check
+`tools/selftest.py`. Two more are packaging, in `.claude-plugin/`. The seven checkers in `tools/` check
 this repository and are not part of an install - one fails when a chart in `assets/` draws a figure this
-README does not state, another when the prose here picks up a habit it does not have.
+README does not state, another when the prose here picks up a habit it does not have, a third when the
+three files that state the version stop agreeing with each other.
 
 - **Python 3**, standard library only, no network. `python tools/selftest.py` passes 19 of 19 on
   **3.12.10** and **3.14.4**. The floor below them is **undetermined** - unmeasured, not absent. On any
@@ -123,8 +124,8 @@ README does not state, another when the prose here picks up a habit it does not 
 - **An agent that can report its own context.** Step 1 asks the agent what it loaded, never reads the
   screen. A harness that cannot answer leaves step 1 nothing to observe, and the audit says so.
 
-Version `rubric 2, revision 3`, stated in `skills/ecoctx/SKILL.md`. The rubric number says whether a
-phase 1 and the phase 2 grading it ran under the same rubric. `plugin.json` renders it `2.3.0` because
+Version `rubric 2, revision 4`, stated in `skills/ecoctx/SKILL.md`. The rubric number says whether a
+phase 1 and the phase 2 grading it ran under the same rubric. `plugin.json` renders it `2.4.0` because
 the platform requires semver.
 
 ## Status
