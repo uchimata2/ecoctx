@@ -98,13 +98,13 @@ Bytes off the filesystem, on LF, re-measured by `tools/check_readme.py` on every
 | Stage | Bytes | Paid |
 | :--- | ---: | :--- |
 | Routing description | 497 | every session, used or not |
-| `skills/ecoctx/SKILL.md` body | 9,285 | when the skill activates |
-| `skills/ecoctx/references/measure.md` | 28,283 | steps 1 to 5 only |
+| `skills/ecoctx/SKILL.md` body | 10,129 | when the skill activates |
+| `skills/ecoctx/references/measure.md` | 30,240 | steps 1 to 5 only |
 | `skills/ecoctx/references/judge.md` | 32,814 | steps 6 to 11 only |
 | `skills/ecoctx/references/standing.md` | 18,276 | steps 12 to 16 only |
 
 497 bytes is the only figure that compounds. The body routes to exactly one reference, so the largest
-single-phase cost is 9,285 plus 32,814, or 42,099 bytes.
+single-phase cost is 10,129 plus 32,814, or 42,943 bytes.
 
 ## What ships, and what you need
 
@@ -124,8 +124,8 @@ three files that state the version stop agreeing with each other.
 - **An agent that can report its own context.** Step 1 asks the agent what it loaded, never reads the
   screen. A harness that cannot answer leaves step 1 nothing to observe, and the audit says so.
 
-Version `rubric 2, revision 4`, stated in `skills/ecoctx/SKILL.md`. The rubric number says whether a
-phase 1 and the phase 2 grading it ran under the same rubric. `plugin.json` renders it `2.4.0` because
+Version `rubric 3, revision 0`, stated in `skills/ecoctx/SKILL.md`. The rubric number says whether a
+phase 1 and the phase 2 grading it ran under the same rubric. `plugin.json` renders it `3.0.0` because
 the platform requires semver.
 
 ## Status
