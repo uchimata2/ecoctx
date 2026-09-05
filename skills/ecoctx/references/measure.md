@@ -206,13 +206,39 @@ That boundary is worth more than the tokens it failed to save.
    context**, never of what was displayed. A load path read off the screen is a list of the items that
    happened to be loud.
 
+   **Every row carries the basis it was established on, from this closed set.** A row that does not
+   say which one it used cannot be graded later by anybody, because nothing about the row says how
+   much to trust it.
+
+   | Basis | Established from | Grounds tier 1 |
+   | :--- | :--- | :---: |
+   | **observed** | the agent's own report of its context | yes |
+   | **queried** | the harness, asked at run time for what a context report does not carry | yes |
+   | **looked up** | documentation or a setting reference, for what neither reports nor answers | yes |
+   | **artifact** | the subject's own files, because none of the above was available | **no** |
+
+   **`observed` reports what the run's own context carries, which is not the same as the subject's.**
+   An item scoped to the harness or the user is shared by any session on the same machine and account,
+   so observing it once observes it for the subject as well. **A project-scoped item is `observed`
+   only when the run is inside that project.** Outside it, the context report is a correct account of
+   the wrong repository — which is the mistake this whole set exists to make visible, and the one a
+   run is most likely to make without noticing.
+
+   **An item whose basis cannot be established is recorded as `undetermined`, never as absent.** *No
+   such item* and *could not tell* are different findings and only one of them is safe to act on. An
+   unobservable item recorded as absent is the one error on this step that looks like a clean result.
+
+   **An `artifact` row is a candidate for tier 1 and never a member of it**, and this is the whole of
+   what the method offers a run that cannot get inside its subject. The reason is the warning three
+   paragraphs up: a load path assembled from files rather than from a context report is a list of the
+   items that happened to be loud. Such a row is still worth writing — it is what an outside-in run
+   has — but it may not carry a tier that a later phase will grade as though somebody watched it load.
+
    **Unattended execution is the one item on this list that observation does not reach**, and it is
    worth knowing before the inventory starts. A context report describes the session in front of you;
    a schedule that fires when nobody is there appears in none of it. That item is **queried**, from
    whatever the harness offers for listing scheduled tasks and running jobs — and where nothing offers
-   it, the inventory records that the item could not be enumerated rather than that there were none.
-   An unobservable item recorded as absent is the one error on this step that looks like a clean
-   result.
+   it, the row is `undetermined`.
 
    **Extending that rule to the tool interface: record whether deferred loading is active, and read it
    from that same report rather than inferring it from any byte count.** A harness that defers tool
@@ -229,10 +255,10 @@ That boundary is worth more than the tokens it failed to save.
    What is visible nowhere is that the harness may load only the first part of it: nothing in the
    store records the cap, and the file's own size cannot reflect it. A project whose store has grown
    past that bound pays the cap while its inventory reports the file, and the excess buys nothing.
-   **The cap is looked up, never measured**, so a run that cannot find it records it as
-   **undetermined** rather than as absent — *no cap* and *cap unknown* are different findings, and
-   only one of them is safe to act on. Name it by class, never by the harness, the setting or the
-   number, all three of which date within a release (step 16).
+   **The cap is looked up, never measured**, so a run that cannot find it records the row as
+   `undetermined` rather than as absent — *no cap* and *cap unknown* are different findings. Name it
+   by class, never by the harness, the setting or the number, all three of which date within a
+   release (step 16).
 
 2. **Inventory the read path (B)** for one representative unit of work, **chosen before the audit
    starts and named in the report.** Record what was opened, **in what format**, how much of it was

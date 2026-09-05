@@ -22,7 +22,7 @@ Never load two. Each names its own steps and nothing outside them.
 If the user has not said which, ask. *Audit my context* means step 1; *grade the audit* means step 12.
 The second cannot be faked from the first: its gate is that the raised work is implemented, which is usually months and is never a clock.
 
-## The four things this skill refuses to do
+## The five things this skill refuses to do
 
 Stated here, on the body, because each one is where a run goes wrong and none of them survives being
 kept in a reference the session may not load.
@@ -40,6 +40,11 @@ kept in a reference the session may not load.
 4. **Resolve a collision with the project's own policy.** The method is a guest. Where a proposed rule
    collides with something the project has settled, the project's rule stands and the collision is
    reported for its owner.
+5. **Claim tier-1 membership it did not observe.** Every load-path row carries the basis it was
+   established on, and a row read from the subject's own files is a **candidate** for tier 1, never a
+   member (`measure.md`, step 1). That is what the method offers a run auditing a subject it is not
+   running inside, and it is stated here because such a run meets the problem at step 1 and would
+   otherwise meet it after measuring.
 
 ## What the run produces
 
@@ -55,6 +60,11 @@ Two documents and two registers, and the split between them is by **who can act*
 **The report carries the full step partition as a table**, one row per step, each *ran* or
 *not run, with a stated reason*. A step in neither fails the audit, and a partition a reader has to
 reconstruct is not one a later reader can check.
+
+**It states the run's basis beside that partition**, where the version already goes: whether the load
+path was observed from inside the subject, or established from its artifacts because the run could not
+get inside. A grader arriving at step 12 then knows what the predictions rest on without opening a
+single row.
 
 **The byproduct register is the fourth output and sits outside the ranking.** Checking every file for
 one thing means seeing other things; record them, never band them, and read the register **for a
@@ -76,7 +86,7 @@ substitute an artifact sum: unlabelled, it reads exactly like a measurement.
 
 ## Version, and what it means for a phase 2
 
-**rubric 2, revision 4**, and rubric 1 was written on **2026-09-04**. Written as words: two dot-separated integers would be read as SemVer, whose
+**rubric 3, revision 0**, and rubric 1 was written on **2026-09-04**. Written as words: two dot-separated integers would be read as SemVer, whose
 question is not this one — nothing here breaks at run time, and what can break is a comparison taken
 months apart. `.claude-plugin/plugin.json` carries the same version rendered as semver — rubric as the
 major, revision as the minor, patch always zero — because the platform refuses anything else: `claude
@@ -108,7 +118,8 @@ date above.
 
 **Only tier 1 gets a budget, and express it as a relation rather than a constant.** Tier 1 is what the
 harness loads without being asked — a property of the tree, established by observation, never by a
-file's claim about itself. A number and the arithmetic that justified it must be edited together, and
+file's claim about itself, and where observation cannot reach an item, by a basis the row names
+(`measure.md`, step 1). A number and the arithmetic that justified it must be edited together, and
 the number wins that argument by staying put.
 
 **The inventory survives; the remedy is a hypothesis.** In the one fully graded run, every band error
