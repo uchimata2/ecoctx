@@ -124,8 +124,8 @@ three files that state the version stop agreeing with each other.
 - **An agent that can report its own context.** Step 1 asks the agent what it loaded, never reads the
   screen. A harness that cannot answer leaves step 1 nothing to observe, and the audit says so.
 
-Version `rubric 3, revision 1`, stated in `skills/ecoctx/SKILL.md`. The rubric number says whether a
-phase 1 and the phase 2 grading it ran under the same rubric. `plugin.json` renders it `3.1.0` because
+Version `rubric 3, revision 2`, stated in `skills/ecoctx/SKILL.md`. The rubric number says whether a
+phase 1 and the phase 2 grading it ran under the same rubric. `plugin.json` renders it `3.2.0` because
 the platform requires semver.
 
 ## Status
