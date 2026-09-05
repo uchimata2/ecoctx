@@ -19,6 +19,16 @@ fact: the `status` row of its vocabulary table, minus `open_statuses` from its f
 Add a value there and this check sees it without a second edit - the discipline
 `check_readme.py` and `check_steps.py` both state in their own first lines.
 
+**A `related` edge written at one end only is the other fact nothing rendered** (#81). The same
+config says this backend derives no inverse for `related`, so the field is written at both ends or
+it does not exist, and "a pair written once is a half-edge that reads as absent from the other
+side". One existed: #50 was named by #63 and named nothing back, through a phase that asserted the
+opposite, and it was found by re-reading rather than by any view.
+
+**Only the property block is read for it.** `related` lives in the fenced block at the top of a body
+and nowhere else, and a body's prose can discuss the field - #27 does, at length. A checker that
+swept whole bodies would report edges nobody wrote, which is worse than the gap it fills.
+
 **The predicate is exercised before the tracker is read.** `measure.md` requires a known-good
 case before any scan's output is read as a finding, after a scan in the recorded run named three
 defective rows and one of them was its own regular expression. The cases below run first and
@@ -98,6 +108,74 @@ CASES: list[tuple[str, list[str], bool]] = [
 ]
 
 
+BLOCK_RE = re.compile(r"\A\s*```[^\n]*\n(.*?)\n```", re.S)
+RELATED_RE = re.compile(r"^Related:\s*(.+)$", re.M)
+REF_RE = re.compile(r"#(\d+)")
+
+
+def related_edges(body: str) -> set[int]:
+    """The issues a body's property block names as related.
+
+    The fenced block at the top, and nothing else. `related` lives there per `.taskmd/config.md`,
+    while a body's prose may discuss the field at length - so a body-wide search would read those
+    sentences as edges and report links nobody wrote.
+    """
+    m = BLOCK_RE.match(body or "")
+    if not m:
+        return set()
+    line = RELATED_RE.search(m.group(1))
+    return {int(n) for n in REF_RE.findall(line.group(1))} if line else set()
+
+
+def asymmetries(edges: dict[int, set[int]]) -> list[str]:
+    """One line per edge written at a single end, or naming an issue this tracker does not hold."""
+    out = []
+    for near in sorted(edges):
+        for far in sorted(edges[near]):
+            if far not in edges:
+                out.append(f"#{near} names #{far} as related, and no such issue is in this tracker")
+            elif near not in edges[far]:
+                out.append(f"#{near} names #{far} as related and #{far} does not name #{near} back "
+                           f"- the Related line is missing from #{far}")
+    return out
+
+
+# (body, the edges it holds) - the parser is exercised because a parser that matches nothing
+# reports a perfectly symmetric backlog, which is this check's own version of the scan whose
+# defect was its regular expression.
+PARSE_CASES: list[tuple[str, set[int]]] = [
+    ("```\nwork_package: F-tooling\norder: 46\nRelated: #27\n```\n\nbody text", {27}),
+    ("```\nRelated: #8, #11, #81\n```", {8, 11, 81}),
+    ("```\nwork_package: outside-ranking\n```\n\nprose", set()),
+    ("no property block, and a line saying\nRelated: #99\nin ordinary prose", set()),
+    ("```\norder: 1\n```\n\nRelated: #99 mentioned after the block", set()),
+    ("", set()),
+]
+
+# (edges, how many lines the pass must produce)
+EDGE_CASES: list[tuple[dict[int, set[int]], int]] = [
+    ({1: {2}, 2: {1}}, 0),                    # written at both ends: quiet
+    ({1: {2}, 2: set()}, 1),                  # the half-edge this check exists for
+    ({1: set(), 2: set()}, 0),                # no edges is not a finding
+    ({1: {2}, 2: {1, 3}, 3: {2}}, 0),         # more than one edge on an issue
+    ({1: {9}}, 1),                            # naming an issue the tracker does not hold
+]
+
+
+def edge_self_check() -> list[str]:
+    bad = []
+    for body, expected in PARSE_CASES:
+        got = related_edges(body)
+        if got != expected:
+            bad.append(f"parser wrong on {body[:34]!r}: expected {expected or 'no edges'}, got "
+                       f"{got or 'no edges'}")
+    for edges, expected in EDGE_CASES:
+        got = len(asymmetries(edges))
+        if got != expected:
+            bad.append(f"symmetry wrong on {edges}: expected {expected} line(s), got {got}")
+    return bad
+
+
 def self_check(open_: set[str], closed: set[str]) -> list[str]:
     bad = []
     for state, labels, expected in CASES:
@@ -112,7 +190,7 @@ def issues() -> list[dict]:
     try:
         proc = subprocess.run(
             ["gh", "issue", "list", "--state", "all", "--limit", "1000",
-             "--json", "number,state,labels"],
+             "--json", "number,state,labels,body"],
             cwd=ROOT, capture_output=True,
         )
     except (FileNotFoundError, OSError):
@@ -129,7 +207,7 @@ def issues() -> list[dict]:
 def main() -> int:
     open_, closed = statuses()
 
-    broken = self_check(open_, closed)
+    broken = self_check(open_, closed) + edge_self_check()
     if broken:
         print("check_tracker: the predicate failed its own cases, so the tracker was not read")
         for line in broken:
@@ -143,15 +221,21 @@ def main() -> int:
         if why:
             problems.append(f"#{row['number']} {why}")
 
+    edges = {row["number"]: related_edges(row.get("body") or "") for row in rows}
+    problems += asymmetries(edges)
+
     if problems:
-        print(f"check_tracker: {len(problems)} of {len(rows)} issues contradict themselves")
+        print(f"check_tracker: {len(problems)} problem(s) across {len(rows)} issues")
         for line in problems:
             print(f"  MISMATCH  {line}")
-        print("\nstatus is the fact and the state is a rendering of it - .taskmd/config.md.")
+        print("\nstatus is the fact and the state is a rendering of it; related is written at "
+              "both ends or it does not exist - .taskmd/config.md.")
         return 1
 
-    print(f"check_tracker: {len(rows)} issues, state and status: agree on every one "
-          f"({len(CASES)} predicate cases passed first)")
+    total = sum(len(v) for v in edges.values())
+    print(f"check_tracker: {len(rows)} issues, state and status: agree on every one, and all "
+          f"{total} related edge(s) are written at both ends "
+          f"({len(CASES) + len(PARSE_CASES) + len(EDGE_CASES)} predicate cases passed first)")
     return 0
 
 
