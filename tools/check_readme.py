@@ -1,10 +1,23 @@
 #!/usr/bin/env python3
-"""Re-measure every figure `README.md` publishes about this repository.
+"""Re-measure every figure and re-derive every count `README.md` publishes about this repository.
 
 A skill that audits context economy publishes its own installed cost, which makes those five
 numbers the most checkable claim this repository makes about itself. Until now they were checked
 by whoever remembered: editing `references/judge.md` once moved three published figures at the
 same time, and catching it took a script written for the occasion.
+
+**The counts arrived later and for the same reason** (#77). The README also states how many steps
+the method has, how many files are the method, how many are packaging, how many checkers live in
+`tools/` and how many checks `selftest.py` runs. None was checked, and on 2026-09-05 #75 added a
+seventh checker and made the fourth of them false. It was corrected by hand in the same commit,
+because somebody happened to look - which is the arrangement the byte figures above stopped having.
+
+**What a green run here does not mean.** It means every number the README states agrees with what
+produces it. It does not mean the README is true: a count nobody has written a rule for is
+invisible to this file, and unlike the installed-cost table - whose rows enumerate themselves, so a
+row nothing can measure is reported - prose does not announce its own numbers. Scanning every digit
+in the README instead was rejected: it turns each incidental figure in a sentence into a failure,
+and a checker argued with is a checker switched off.
 
 **The two measurement rules live here rather than in a reader's head**, because the script written
 for that occasion got both wrong before it got them right:
@@ -26,6 +39,7 @@ Standard library only. Runs from any working directory.
 from __future__ import annotations
 
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -42,6 +56,17 @@ SUM_RE = re.compile(r"largest\s+(?:possible\s+)?single-phase\s+cost\s+is\s+([\d,
                     r"([\d,]+),\s+or\s+([\d,]+)")
 COMPOUND_RE = re.compile(r"([\d,]+)\s+bytes\s+is\s+the\s+only\s+figure\s+that\s+compounds")
 PATH_RE = re.compile(r"`([A-Za-z0-9_./-]+\.md)`")
+
+# The step total is `SKILL.md`'s fact, and `check_steps.py` already owns the pattern that reads it
+# and the word map that turns it into a number. Both are imported rather than copied: a checker
+# that enforces agreement while holding its own duplicate of what it reads is the joke it exists
+# to stop. A script run puts `tools/` on the path, so this resolves from any working directory.
+import check_steps  # noqa: E402
+
+# check_steps needs only the range a step total can reach. The README also counts files, packaging
+# and checkers, so the small words are added here rather than widened there.
+WORDS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8,
+         "nine": 9, **check_steps.WORDS}
 
 
 def size(path: Path) -> int:
@@ -73,6 +98,74 @@ def skill_parts() -> tuple[int, int, str | None]:
     if len(m.group(0)) + len(body) != len(raw):
         return 0, 0, "SKILL.md does not reconstruct from front matter plus body"
     return len(d.group(1)), len(body), None
+
+
+def word_or_digits(token: str) -> int | None:
+    """The integer a README count states, or None for a word this tool cannot read."""
+    bare = token.replace(",", "")
+    return int(bare) if bare.isdigit() else WORDS.get(token.lower())
+
+
+def shipping_tools() -> list[Path]:
+    """The programs that ship with the skill: every tool that is not one of this repository's checkers."""
+    return [p for p in sorted((ROOT / "tools").glob("*.py")) if not p.name.startswith("check_")]
+
+
+def step_total() -> int | None:
+    m = check_steps.TOTAL_RE.search(SKILL.read_text(encoding="utf-8"))
+    return WORDS.get(m.group(1).lower()) if m else None
+
+
+def selftest_total() -> int | None:
+    """How many checks `selftest.py` runs, taken by running it.
+
+    Counting `check(` call sites would be free and would be wrong the first time one sat inside a
+    loop — and `selftest.py` carries a comment about a line that claimed ten checks while eleven
+    ran, so that is not a hypothetical bug, it is one this repository has already made once.
+    Measured 2026-09-05: the extra run costs the gate 0.74s of its 1.67s.
+    """
+    proc = subprocess.run([sys.executable, str(ROOT / "tools" / "selftest.py")],
+                          capture_output=True, encoding="utf-8", cwd=ROOT)
+    m = re.search(r"selftest: \d+ of (\d+) checks", proc.stdout or "")
+    return int(m.group(1)) if m else None
+
+
+# Each entry: a label, the README pattern whose every captured group states the count, and what
+# answers it. Nothing here holds an expected number, exactly as the figures above hold none.
+COUNTS: list[tuple[str, re.Pattern[str], object]] = [
+    ("steps the method has", re.compile(r"^(\w+) steps, two phases", re.M), step_total),
+    ("files that are the method", re.compile(r"^(\w+) files are the method", re.M),
+     lambda: len(list(SKILL_DIR.rglob("*.md"))) + len(shipping_tools())),
+    ("packaging files", re.compile(r"(\w+) more are packaging"),
+     lambda: len([p for p in (ROOT / ".claude-plugin").iterdir() if p.is_file()])),
+    ("checkers in tools/", re.compile(r"The (\w+) checkers in `tools/`"),
+     lambda: len(list((ROOT / "tools").glob("check_*.py")))),
+    ("checks selftest runs", re.compile(r"passes ([\d,]+) of ([\d,]+)"), selftest_total),
+]
+
+
+def counts(readme: str, problems: list[str]) -> None:
+    """Re-derive every count the README states, and print one row each."""
+    print(f"\n=== {len(COUNTS)} published count(s)")
+    for label, pattern, derive in COUNTS:
+        m = pattern.search(readme)
+        if not m:
+            problems.append(f"{label!r}: the sentence stating this count is gone or reworded")
+            continue
+        stated = [word_or_digits(g) for g in m.groups()]
+        if None in stated:
+            problems.append(f"{label!r}: the README spells it {m.group(0)!r}, which this tool "
+                            f"cannot read as a number — add the word to WORDS")
+            continue
+        actual = derive()
+        if actual is None:
+            problems.append(f"{label!r}: nothing here could work out the real number")
+            continue
+        shown = " and ".join(str(s) for s in stated)
+        agrees = all(s == actual for s in stated)
+        print(f"  {'ok ' if agrees else 'OFF'} {label:<26} says {shown:>9}  counted {actual:>7}")
+        if not agrees:
+            problems.append(f"{label!r}: the README says {shown}, there are {actual}")
 
 
 def main() -> int:
@@ -135,7 +228,10 @@ def main() -> int:
         if a + bb != total:
             problems.append(f"the sum says {a:,} plus {bb:,} is {total:,}, which is {a + bb:,}")
 
-    print(f"\ncheck_readme: {len(rows)} row(s) checked, {len(problems)} problem(s)")
+    counts(readme, problems)
+
+    print(f"\ncheck_readme: {len(rows)} row(s) and {len(COUNTS)} count(s) checked, "
+          f"{len(problems)} problem(s)")
     for p in problems:
         print(f"  MISMATCH  {p}")
     return 1 if problems else 0
