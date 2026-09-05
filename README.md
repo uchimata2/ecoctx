@@ -99,7 +99,7 @@ Bytes off the filesystem, on LF, re-measured by `tools/check_readme.py` on every
 | :--- | ---: | :--- |
 | Routing description | 497 | every session, used or not |
 | `skills/ecoctx/SKILL.md` body | 10,129 | when the skill activates |
-| `skills/ecoctx/references/measure.md` | 30,108 | steps 1 to 5 only |
+| `skills/ecoctx/references/measure.md` | 30,240 | steps 1 to 5 only |
 | `skills/ecoctx/references/judge.md` | 32,814 | steps 6 to 11 only |
 | `skills/ecoctx/references/standing.md` | 18,276 | steps 12 to 16 only |
 

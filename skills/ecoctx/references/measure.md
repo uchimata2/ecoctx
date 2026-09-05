@@ -142,7 +142,8 @@ deliberate act.
 **A document that asserts a load discipline the harness does not implement is worse than one over
 budget**, because the claim cannot be falsified and content keeps being written on the strength of it.
 Establish tier 1 **by observation**: read what the session was given before its first tool call. Do not
-take a file's word for when it loads.
+take a file's word for when it loads. Where observation cannot reach an item, step 1 says what else a
+row may be established on, and which of those ground a tier at all.
 
 ### Controllers — who can change a load-path item
 
