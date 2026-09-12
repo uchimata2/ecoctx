@@ -1,7 +1,7 @@
 {
   "name": "ecoctx",
   "version": "2.7.0",
-  "description": "Grade every prediction against what the fix actually bought, not just measure what loads. ecoctx audits your coding agent's standing context cost in tokens - CLAUDE.md, indexes, every installed skill's description - and ranks what can really be changed. Sixteen steps, two phases, a record another person can check.",
+  "description": "ecoctx audits the context your coding agent loads on every turn - CLAUDE.md, indexes, every installed skill's description - and measures what each costs in tokens. It ranks what can really be changed, then grades each prediction against what the fix actually bought. Sixteen steps, two phases, and a record another person can check.",
   "author": {
     "name": "the ecoctx maintainers",
     "url": "https://github.com/uchimata2/ecoctx"
